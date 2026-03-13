@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Salgados & Cia — Encomendas e Delivery</title>
+  <title>Dublinha — Encomendas e Delivery</title>
+
+  <!--Icon-->
+  <link rel="icon" type="image/png" href="images/icon.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -122,31 +125,172 @@
       <p class="note" data-i18n="order_note">Prices may vary according to quantity and promotions. Check via WhatsApp.</p>
 
       <div class="product-grid">
-        <!-- Produto 1 -->
-        <article class="product">
-          <h3 data-i18n="prod1_name">Frango cremoso</h3>
-          <p class="desc" data-i18n="prod1_desc">Coxinha de frango cremoso com catupiry — massa crocante, recheio suculento.</p>
-          <p class="price"><span class="price-value">€ 5,00</span> <span data-i18n="unit">unidade</span></p>
-        </article>
-        <!-- Produto 2 -->
-        <article class="product">
-          <h3 data-i18n="prod2_name">Frango com queijo</h3>
-          <p class="desc" data-i18n="prod2_desc">Coxinha de frango com pedaços de queijo, equilibrado e saboroso.</p>
-          <p class="price"><span class="price-value">€ 5,50</span> <span data-i18n="unit">unidade</span></p>
-        </article>
-        <!-- Produto 3 -->
-        <article class="product">
-          <h3 data-i18n="prod3_name">Calabresa</h3>
-          <p class="desc" data-i18n="prod3_desc">Pastel de calabresa com cebola e tempero especial.</p>
-          <p class="price"><span class="price-value">€ 6,00</span> <span data-i18n="unit">unidade</span></p>
-        </article>
-        <!-- Produto 4 -->
-        <article class="product">
-          <h3 data-i18n="prod4_name">Costela</h3>
-          <p class="desc" data-i18n="prod4_desc">Salgado recheado com costela desfiada e temperada.</p>
-          <p class="price"><span class="price-value">€ 6,50</span> <span data-i18n="unit">unidade</span></p>
-        </article>
-      </div>
+
+<!-- FRANGO CREMOSO -->
+<article class="product" data-product="Frango Cremoso">
+    <div class="badge-best">⭐ Best Seller</div>
+<img src="images/coxinha-frango.jpg" class="product-img">
+
+<h3>Frango Cremoso</h3>
+<p class="desc">Coxinha tradicional com frango cremoso temperado.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="2.50">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="4.00">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="6.00">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">2.50</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+
+<!-- QUEIJO -->
+<article class="product" data-product="Queijo">
+<img src="images/coxinha-queijo.jpg" class="product-img">
+
+<h3>Queijo</h3>
+<p class="desc">Coxinha recheada com queijo derretido.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="2.70">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="4.20">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="6.30">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">2.70</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+
+<!-- CALABRESA -->
+<article class="product" data-product="Calabresa">
+<img src="images/coxinha-calabresa.jpg" class="product-img">
+
+<h3>Calabresa</h3>
+<p class="desc">Coxinha com recheio de calabresa temperada.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="2.80">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="4.30">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="6.40">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">2.80</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+
+<!-- FRANGO + QUEIJO -->
+<article class="product" data-product="Frango com Queijo">
+<img src="images/coxinha-frango-queijo.jpg" class="product-img">
+
+<h3>Frango com Queijo</h3>
+<p class="desc">Coxinha de frango com queijo cremoso.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="3.20">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="5.00">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="7.00">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">3.20</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+
+<!-- COSTELA -->
+<article class="product" data-product="Costela">
+<img src="images/coxinha-costela.jpg" class="product-img">
+
+<h3>Costela</h3>
+<p class="desc">Coxinha recheada com costela desfiada.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="3.20">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="5.00">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="7.00">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">3.20</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+
+<!-- VEGANA -->
+<article class="product" data-product="Vegana">
+<img src="images/coxinha-vegana.jpg" class="product-img">
+
+<h3>Vegana</h3>
+<p class="desc">Coxinha vegana recheada com palmito.</p>
+
+<div class="size-selector">
+<button class="size-btn small active" data-size="Pequena (30g)" data-price="3.00">P</button>
+<button class="size-btn medium" data-size="Média (60g)" data-price="4.80">M</button>
+<button class="size-btn large" data-size="Grande (100g)" data-price="6.80">G</button>
+</div>
+
+<p class="price">€ <span class="price-value">3.00</span></p>
+
+<div class="qty-control">
+<button class="qty-btn minus">-</button>
+<span class="qty">1</span>
+<button class="qty-btn plus">+</button>
+</div>
+
+<button class="add-item">Adicionar</button>
+</article>
+
+</div>
+        <div class="kits-area">
+
+            <h3>Quick Kits</h3>
+            <div class="kits">
+                <button class="kit-btn" data-kit="50">
+                    📦 Kit Festa 50 unidades
+                </button>
+
+                <button class="kit-btn" data-kit="100">
+                    📦 Kit Família 100 unidades
+                </button>
+            </div>
+
+        </div>
 
       <!-- Formulário WhatsApp -->
       <div class="order-form-wrap" id="contato">
@@ -160,6 +304,14 @@
 
           <label for="phone" data-i18n="label_phone">Phone (with area code)</label>
           <input type="tel" id="phone" name="phone" placeholder="353871234567" required>
+
+          <label>Itens selecionados</label>
+
+<div id="orderItems" class="order-items"></div>
+
+<div class="order-total">
+Subtotal: € <span id="orderTotal">0.00</span>
+</div>
 
           <label for="details" data-i18n="label_details">Order details</label>
           <textarea id="details" name="details" rows="5" placeholder="e.g.: 50 chicken coxinhas, 20 beef pastels... allergies, pickup/delivery time" required></textarea>
@@ -231,5 +383,15 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="script.js"></script>
+  <div class="mobile-cart">
+
+<div class="cart-info">
+<span id="cartCount">0 items</span>
+<span id="cartSubtotal">€0.00</span>
+</div>
+
+<button id="viewCartBtn">View Order</button>
+
+</div>
 </body>
 </html>
