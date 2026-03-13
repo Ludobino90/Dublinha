@@ -57,7 +57,7 @@ const translations = {
     contact: "Contact",
     email_label: "Email",
     phone_label: "Phone",
-    company_name: "Salgados & Cia",
+    company_name: "Dublinha",
     rights: "All rights reserved."
   },
   pt: {
@@ -105,7 +105,7 @@ const translations = {
     contact: "Contato",
     email_label: "Email",
     phone_label: "Telefone",
-    company_name: "Salgados & Cia",
+    company_name: "Dublinha",
     rights: "Todos os direitos reservados."
   },
   es: {
@@ -153,7 +153,7 @@ const translations = {
     contact: "Contacto",
     email_label: "Correo",
     phone_label: "Teléfono",
-    company_name: "Salgados & Cia",
+    company_name: "Dublinha",
     rights: "Todos los derechos reservados."
   }
 };
