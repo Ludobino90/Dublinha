@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Salgados & Cia — Encomendas e Delivery</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ======================
+       HEADER
+       ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="Logotipo - Salgados & Cia" class="logo" />
+        <div class="brand-text">
+          <h1>Salgados & Cia</h1>
+          <p class="tagline" data-i18n="tagline">Coxinhas • Pastéis • Massas</p>
+        </div>
+      </div>
+
+        <div class="language-selector">
+          <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
+          <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
+          <button onclick="setLanguage('es')" id="lang-es">ES</button>
+        </div>
+
+      <!-- Navegação (desktop) -->
+      <nav class="main-nav" aria-label="Menu principal">
+        <a href="#home" data-i18n="menu_home">Home</a>
+        <a href="#encomendas" data-i18n="menu_order">Orders</a>
+        <a href="#contato" data-i18n="menu_contact">Contact</a>
+      </nav>
+
+      <!-- Botão hambúrguer (mobile) -->
+      <button id="navToggle" class="nav-toggle" aria-label="Abrir menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+
+    <!-- Menu mobile oculto por padrão -->
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#home" class="mobile-link" data-i18n="menu_home">Home</a>
+      <a href="#encomendas" class="mobile-link" data-i18n="menu_order">Orders</a>
+      <a href="#contato" class="mobile-link" data-i18n="menu_contact">Contact</a>
+      <!-- Seletor de idioma também no mobile -->
+      <div class="language-selector mobile-language">
+        <button onclick="setLanguage('en')" id="mobile-lang-en" class="active">EN</button>
+        <button onclick="setLanguage('pt')" id="mobile-lang-pt">PT</button>
+        <button onclick="setLanguage('es')" id="mobile-lang-es">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- ======================
+         CARROSSEL DE DESTAQUE
+         ====================== -->
+    <section class="hero">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- SLIDE 1 -->
+          <div class="swiper-slide">
+            <img src="images/slide1.jpg" alt="Coxinhas deliciosas" />
+            <div class="slide-caption">
+              <h2 data-i18n="slide1_title">Coxinha Tradicional</h2>
+              <p data-i18n="slide1_desc">Crocrante por fora, cremosa por dentro — peça já para sua festa!</p>
+            </div>
+          </div>
+          <!-- SLIDE 2 -->
+          <div class="swiper-slide">
+            <img src="images/slide2.jpg" alt="Pastéis quentinhos" />
+            <div class="slide-caption">
+              <h2 data-i18n="slide2_title">Pastéis Quentes</h2>
+              <p data-i18n="slide2_desc">Recheios: carne, queijo, frango — e muito mais.</p>
+            </div>
+          </div>
+          <!-- SLIDE 3 -->
+          <div class="swiper-slide">
+            <video playsinline muted loop preload="metadata" class="slide-video">
+              <source src="images/slide3.mp4" type="video/mp4" />
+              <img src="images/slide3.jpg" alt="Produção artesanal" />
+            </video>
+            <div class="slide-caption">
+              <h2 data-i18n="slide3_title">Feito com amor</h2>
+              <p data-i18n="slide3_desc">Receitas artesanais e ingredientes frescos.</p>
+            </div>
+          </div>
+          <!-- SLIDE 4 -->
+          <div class="swiper-slide">
+            <img src="images/slide4.jpg" alt="Combo festa" />
+            <div class="slide-caption">
+              <h2 data-i18n="slide4_title">Combo Festa</h2>
+              <p data-i18n="slide4_desc">Monte o seu combo e garanta desconto para grandes quantidades.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- ======================
+         ENCOMENDAS
+         ====================== -->
+    <section id="encomendas" class="section-encomendas container">
+      <h2 data-i18n="order_title">Place your order</h2>
+      <p class="note" data-i18n="order_note">Prices may vary according to quantity and promotions. Check via WhatsApp.</p>
+
+      <div class="product-grid">
+        <!-- Produto 1 -->
+        <article class="product">
+          <h3 data-i18n="prod1_name">Frango cremoso</h3>
+          <p class="desc" data-i18n="prod1_desc">Coxinha de frango cremoso com catupiry — massa crocante, recheio suculento.</p>
+          <p class="price"><span class="price-value">€ 5,00</span> <span data-i18n="unit">unidade</span></p>
+        </article>
+        <!-- Produto 2 -->
+        <article class="product">
+          <h3 data-i18n="prod2_name">Frango com queijo</h3>
+          <p class="desc" data-i18n="prod2_desc">Coxinha de frango com pedaços de queijo, equilibrado e saboroso.</p>
+          <p class="price"><span class="price-value">€ 5,50</span> <span data-i18n="unit">unidade</span></p>
+        </article>
+        <!-- Produto 3 -->
+        <article class="product">
+          <h3 data-i18n="prod3_name">Calabresa</h3>
+          <p class="desc" data-i18n="prod3_desc">Pastel de calabresa com cebola e tempero especial.</p>
+          <p class="price"><span class="price-value">€ 6,00</span> <span data-i18n="unit">unidade</span></p>
+        </article>
+        <!-- Produto 4 -->
+        <article class="product">
+          <h3 data-i18n="prod4_name">Costela</h3>
+          <p class="desc" data-i18n="prod4_desc">Salgado recheado com costela desfiada e temperada.</p>
+          <p class="price"><span class="price-value">€ 6,50</span> <span data-i18n="unit">unidade</span></p>
+        </article>
+      </div>
+
+      <!-- Formulário WhatsApp -->
+      <div class="order-form-wrap" id="contato">
+        <h3 data-i18n="contact_title">Order via WhatsApp</h3>
+        <form id="orderForm" class="order-form" onsubmit="return false;">
+          <label for="name" data-i18n="label_name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+
+          <label for="address" data-i18n="label_address">Address (street, number, etc.)</label>
+          <input type="text" id="address" name="address" placeholder="e.g.: 123 Main St, Dublin" required>
+
+          <label for="phone" data-i18n="label_phone">Phone (with area code)</label>
+          <input type="tel" id="phone" name="phone" placeholder="353871234567" required>
+
+          <label for="details" data-i18n="label_details">Order details</label>
+          <textarea id="details" name="details" rows="5" placeholder="e.g.: 50 chicken coxinhas, 20 beef pastels... allergies, pickup/delivery time" required></textarea>
+
+          <button id="sendWhatsApp" class="btn primary-btn" type="button" data-i18n="finish_order">Finish Order</button>
+        </form>
+        <p class="form-note" data-i18n="form_note">By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site.</p>
+      </div>
+    </section>
+
+    <!-- ======================
+         PAGAMENTO E DELIVERY
+         ====================== -->
+    <section class="payment-delivery container">
+      <h2 data-i18n="payment_title">Payment & Delivery</h2>
+      <div class="cards">
+        <div class="card">
+          <i class="fa-solid fa-money-bill-transfer fa-2x"></i>
+          <h4 data-i18n="payment_bank">Bank transfer</h4>
+          <p data-i18n="payment_bank_desc">PIX / Transfer (Revolut etc.). Arrange with the owner.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-money-bill-wave fa-2x"></i>
+          <h4 data-i18n="payment_cash">Cash</h4>
+          <p data-i18n="payment_cash_desc">Cash on delivery or pickup.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-truck fa-2x"></i>
+          <h4 data-i18n="payment_delivery">Delivery / Pickup</h4>
+          <p data-i18n="payment_delivery_desc">We deliver to your home or pick up locally. Check delivery fee.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WHATSAPP FLUTUANTE -->
+  <a href="#" id="whatsappFloating" class="whatsapp-floating" aria-label="Contato WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4 data-i18n="follow_us">Follow us</h4>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="address_hours">Address & Hours</h4>
+        <p data-i18n="address">123 Example St — Dublin</p>
+        <p data-i18n="hours">Mon–Sat: 08:00 — 19:00</p>
+      </div>
+      <div>
+        <h4 data-i18n="contact">Contact</h4>
+        <p><span data-i18n="email_label">Email</span>: contato@salgadoscia.com</p>
+        <p><span data-i18n="phone_label">Phone</span>: (01) 999 9999</p>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="year"></span> <span data-i18n="company_name">Salgados & Cia</span>. <span data-i18n="rights">All rights reserved.</span></p>
+      <a href="#" id="backToTop" class="back-to-top" title="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
