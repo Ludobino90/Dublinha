@@ -1,15 +1,110 @@
-/* script.js - Versão final corrigida com tokens agrupados e traduções completas */
+/* script.js - versão com tokens agrupados + traduções completas */
 
 // ========== CONFIGURAÇÕES ==========
-const WHATSAPP_NUMBER = '353832023836';
-const WHATSAPP_HEADER_MESSAGE = 'Hello! I would like to place an order:';
+const WHATSAPP_NUMBER = '353832023836'
+const WHATSAPP_HEADER_MESSAGE = 'Hello! I would like to place an order:'
 
 // ========== LISTA DE PEDIDOS ==========
 let orderList=[]
 let total=0
 
 // ========== TRADUÇÕES ==========
-const translations = window.translations || {}
+const translations = {
+
+en:{
+tagline:"Coxinhas • Pastéis • Massas",
+menu_home:"Home",
+menu_order:"Orders",
+menu_contact:"Contact",
+order_title:"Place your order",
+order_note:"Prices may vary according to quantity and promotions. Check via WhatsApp.",
+contact_title:"Order via WhatsApp",
+label_name:"Full name",
+label_address:"Address",
+label_phone:"Phone",
+label_details:"Order details",
+finish_order:"Finish Order",
+payment_title:"Payment & Delivery",
+payment_bank:"Bank transfer",
+payment_bank_desc:"Transfer (Revolut etc.). Arrange with the owner.",
+payment_cash:"Cash",
+payment_cash_desc:"Cash on delivery or pickup.",
+payment_delivery:"Delivery / Pickup",
+payment_delivery_desc:"We deliver to your home or pick up locally.",
+follow_us:"Follow us",
+address_hours:"Address & Hours",
+address:"Dublin Areas",
+hours:"Mon–Sat: 08:00 — 19:00",
+contact:"Contact",
+email_label:"Email",
+phone_label:"Phone",
+company_name:"Dublinha",
+rights:"All rights reserved."
+},
+
+pt:{
+tagline:"Coxinhas • Pastéis • Massas",
+menu_home:"Início",
+menu_order:"Pedidos",
+menu_contact:"Contato",
+order_title:"Faça seu pedido",
+order_note:"Os preços podem variar conforme quantidade e promoções. Consulte no WhatsApp.",
+contact_title:"Pedido via WhatsApp",
+label_name:"Nome completo",
+label_address:"Endereço",
+label_phone:"Telefone",
+label_details:"Detalhes do pedido",
+finish_order:"Finalizar Pedido",
+payment_title:"Pagamento e Entrega",
+payment_bank:"Transferência bancária",
+payment_bank_desc:"Transferência (Revolut etc.). Combine com o responsável.",
+payment_cash:"Dinheiro",
+payment_cash_desc:"Pagamento em dinheiro na entrega ou retirada.",
+payment_delivery:"Entrega / Retirada",
+payment_delivery_desc:"Entregamos em sua casa ou retirada local.",
+follow_us:"Siga-nos",
+address_hours:"Endereço & Horários",
+address:"Regiões de Dublin",
+hours:"Seg–Sáb: 08:00 — 19:00",
+contact:"Contato",
+email_label:"Email",
+phone_label:"Telefone",
+company_name:"Dublinha",
+rights:"Todos os direitos reservados."
+},
+
+es:{
+tagline:"Coxinhas • Pasteles • Masas",
+menu_home:"Inicio",
+menu_order:"Pedidos",
+menu_contact:"Contacto",
+order_title:"Haz tu pedido",
+order_note:"Los precios pueden variar según cantidad y promociones. Consulta por WhatsApp.",
+contact_title:"Pedido por WhatsApp",
+label_name:"Nombre completo",
+label_address:"Dirección",
+label_phone:"Teléfono",
+label_details:"Detalles del pedido",
+finish_order:"Finalizar pedido",
+payment_title:"Pago y Entrega",
+payment_bank:"Transferencia bancaria",
+payment_bank_desc:"Transferencia (Revolut etc.). Coordinar con el propietario.",
+payment_cash:"Efectivo",
+payment_cash_desc:"Pago en efectivo en entrega o recogida.",
+payment_delivery:"Entrega / Recogida",
+payment_delivery_desc:"Entregamos a domicilio o recogida local.",
+follow_us:"Síguenos",
+address_hours:"Dirección y Horarios",
+address:"Áreas de Dublín",
+hours:"Lun–Sáb: 08:00 — 19:00",
+contact:"Contacto",
+email_label:"Email",
+phone_label:"Teléfono",
+company_name:"Dublinha",
+rights:"Todos los derechos reservados."
+}
+
+}
 
 // ========== FUNÇÃO DE TRADUÇÃO ==========
 function setLanguage(lang){
@@ -42,118 +137,22 @@ document.addEventListener('DOMContentLoaded',function(){
 
 document.getElementById('year').textContent=new Date().getFullYear()
 
-// ========== SWIPER ==========
-const swiper=new Swiper('.mySwiper',{
-loop:true,
-speed:800,
-autoplay:{
-delay:4000,
-disableOnInteraction:false,
-pauseOnMouseEnter:true
-},
-slidesPerView:1,
-spaceBetween:10,
-pagination:{
-el:'.swiper-pagination',
-clickable:true
-},
-navigation:{
-nextEl:'.swiper-button-next',
-prevEl:'.swiper-button-prev'
-}
-})
-
-// ========== FORM WHATSAPP ==========
-const sendBtn=document.getElementById('sendWhatsApp')
-
-sendBtn.addEventListener('click',function(){
-
-const name=document.getElementById('name').value.trim()
-const address=document.getElementById('address').value.trim()
-const phone=document.getElementById('phone').value.trim()
-const details=document.getElementById('details').value.trim()
-
-if(!name || !address || !phone || !details){
-alert('Please fill in all fields before submitting.')
-return
-}
-
-const msgLines=[]
-
-if(WHATSAPP_HEADER_MESSAGE) msgLines.push(WHATSAPP_HEADER_MESSAGE)
-
-msgLines.push("")
-msgLines.push(`*Name:* ${name}`)
-msgLines.push(`*Address:* ${address}`)
-msgLines.push(`*Phone:* ${phone}`)
-msgLines.push("*Items:*")
-
-orderList.forEach(item=>{
-
-msgLines.push(`• ${item.qty}x ${item.name} ${item.size} €${(item.price*item.qty).toFixed(2)}`)
-
-})
-
-msgLines.push("")
-msgLines.push(`Subtotal: €${total.toFixed(2)}`)
-
-msgLines.push("")
-msgLines.push(`Notes: ${details}`)
-
-msgLines.push("")
-msgLines.push("Please confirm availability and time.")
-
-const message=encodeURIComponent(msgLines.join('\n'))
-
-const waLink=`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`
-
-window.open(waLink,'_blank')
-
-})
-
-// ========== MENU MOBILE ==========
-const navToggle=document.getElementById('navToggle')
-const mobileMenu=document.getElementById('mobileMenu')
-
-navToggle.addEventListener('click',()=>{
-
-const open=mobileMenu.style.display==='flex'
-mobileMenu.style.display=open?'none':'flex'
-
-})
-
-document.querySelectorAll('.mobile-link').forEach(a=>{
-a.addEventListener('click',()=>{
-mobileMenu.style.display='none'
-})
-})
-
-// ========== BACK TO TOP ==========
-const backToTop=document.getElementById('backToTop')
-
-backToTop.addEventListener('click',(e)=>{
-e.preventDefault()
-window.scrollTo({top:0,behavior:'smooth'})
-})
-
-// ========== WHATSAPP FLOAT ==========
-const whatsappFloating=document.getElementById('whatsappFloating')
-
-whatsappFloating.addEventListener('click',function(e){
-
-e.preventDefault()
-
-const defaultMsg=encodeURIComponent('Hello! I want information about ordering and delivery.')
-
-window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${defaultMsg}`,'_blank')
-
-})
-
-// ========== IDIOMA ==========
+// idioma salvo
 let savedLang=localStorage.getItem("lang") || "en"
 setLanguage(savedLang)
 
-// ========== SISTEMA TAMANHO ==========
+// ========== SWIPER ==========
+new Swiper('.mySwiper',{
+loop:true,
+speed:800,
+autoplay:{delay:4000},
+slidesPerView:1,
+spaceBetween:10,
+pagination:{el:'.swiper-pagination',clickable:true},
+navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}
+})
+
+// ========== TAMANHO ==========
 document.querySelectorAll(".size-btn").forEach(btn=>{
 
 btn.addEventListener("click",function(){
@@ -208,7 +207,6 @@ const price=parseFloat(activeSize.dataset.price)
 
 const qty=parseInt(product.querySelector(".qty").innerText)
 
-// verifica se item já existe
 const existing=orderList.find(item=>item.name===name && item.size===size)
 
 if(existing){
@@ -308,7 +306,6 @@ const cartSubtotal=document.getElementById("cartSubtotal")
 if(cartCount){
 
 let count=0
-
 orderList.forEach(i=>count+=i.qty)
 
 cartCount.innerText=count+" items"
