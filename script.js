@@ -57,7 +57,7 @@ const translations = {
     desc_frango_queijo: "Chicken coxinha with creamy cheese.",
     prod_costela: "Rib",
     desc_costela: "Coxinha filled with shredded ribs.",
-    prod_bisteca: "Vegan Bisteca",
+    prod_bisteca: "Bisteca",
     desc_bisteca: "Vegan coxinha filled with palm heart.",
     add_button: "Add",
     quick_kits: "Quick Kits",

@@ -2,7 +2,7 @@
 
 :root {
   --bg: #fff7f1;
-  --accent: #ff7a18;
+  --accent: #f53621;
   --accent-2: #ffb03b;
   --muted: #6b6b6b;
   --card: #fff;
@@ -411,19 +411,20 @@ a:focus, button:focus, input:focus, textarea:focus {
   font-weight: 600;
 }
 
-.size-btn.small { background: #389510; }
-.size-btn.medium { background: #389510; }
-.size-btn.large { background: #389510; color: rgb(0, 0, 0); }
+.size-btn.small { background: #f536218f; color: rgb(255, 255, 255);}
+.size-btn.medium { background: #f536218f; color: rgb(255, 255, 255);}
+.size-btn.large { background: #f536218f; color: rgb(255, 255, 255); }
 
 .size-btn.active {
-  outline: 2px solid black;
+  outline: 2px solid rgb(128, 128, 128);
+  background: #f53621; color: rgb(255, 255, 255);
 }
 
 .add-item {
   margin-top: 8px;
   width: 100%;
-  background: var(--accent);
-  color: white;
+  background: #25d366;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 8px;
   border-radius: 8px;
@@ -457,6 +458,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 .order-total {
   font-weight: 700;
   margin-bottom: 10px;
+  color: #f53621;
 }
 
 /* BEST SELLER */
@@ -464,8 +466,8 @@ a:focus, button:focus, input:focus, textarea:focus {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #ff7a18;
-  color: white;
+  background: #f1ff34;
+  color: rgb(0, 0, 0);
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 12px;
@@ -490,6 +492,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   border-radius: 6px;
   cursor: pointer;
   font-size: 18px;
+  color: #f53621;
 }
 
 .qty {
@@ -522,7 +525,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 .kit-btn {
-  background: #ff7a18;
+  background: #f53621;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -547,9 +550,9 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 .mobile-cart button {
-  background: #389510;
+  background: #25D366;
   border: none;
-  color: rgb(0, 0, 0);
+  color: white;
   padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
