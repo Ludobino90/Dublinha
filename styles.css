@@ -335,8 +335,8 @@ body {
 .whatsapp-floating {
   position: fixed;
   /* Posição inicial padrão (canto inferior direito) - será sobrescrita pelo JS */
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 60px;
   left: auto;
   top: auto;
   z-index: 9999; /* valor alto para ficar acima de tudo */
