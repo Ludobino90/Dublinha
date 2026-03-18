@@ -34,11 +34,11 @@
         </div>
       </div>
 
-        <div class="language-selector">
-          <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
-          <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
-          <button onclick="setLanguage('es')" id="lang-es">ES</button>
-        </div>
+      <div class="language-selector">
+        <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
+        <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
+        <button onclick="setLanguage('es')" id="lang-es">ES</button>
+      </div>
 
       <!-- Navegação (desktop) -->
       <nav class="main-nav" aria-label="Menu principal">
@@ -116,7 +116,6 @@
       <p class="note" data-i18n="order_note">Prices may vary according to quantity and promotions. Check via WhatsApp.</p>
 
       <div class="product-grid">
-
         <!-- FRANGO CREMOSO -->
         <article class="product" data-product="Frango Cremoso">
           <div class="badge-best">⭐ Best Seller</div>
@@ -255,16 +254,15 @@
 
           <button class="add-item" data-i18n="add_button">Adicionar</button>
         </article>
-
       </div>
 
       <div class="kits-area">
-  <h3 data-i18n="quick_kits">Quick Kits</h3>
-  <div class="kits">
-    <button class="kit-btn" data-kit="50" data-i18n="50">📦 Party Kit 50 units</button>
-    <button class="kit-btn" data-kit="100" data-i18n="100">📦 Party Kit 100 units</button>
-  </div>
-</div>
+        <h3 data-i18n="quick_kits">Quick Kits</h3>
+        <div class="kits">
+          <button class="kit-btn" data-kit="50" data-i18n="50">📦 Party Kit 50 units</button>
+          <button class="kit-btn" data-kit="100" data-i18n="100">📦 Party Kit 100 units</button>
+        </div>
+      </div>
 
       <!-- Formulário WhatsApp -->
       <div class="order-form-wrap" id="contato">
@@ -320,10 +318,33 @@
     </section>
   </main>
 
-  <!-- WHATSAPP FLUTUANTE (link corrigido e arrastável) -->
+  <!-- WHATSAPP FLUTUANTE -->
   <a href="https://wa.me/353832023836" id="whatsappFloating" class="whatsapp-floating" aria-label="Contato WhatsApp" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
+
+  <!-- CARRINHO FLUTUANTE COM DROPDOWN -->
+  <div id="cartFloating" class="cart-floating">
+    <div id="cartDropdown" class="cart-dropdown">
+      <div class="dropdown-header">
+        <span>Seus itens</span>
+        <button id="closeCartDropdown" class="close-dropdown">✕</button>
+      </div>
+      <div id="cartItemsPreview" class="cart-items-preview"></div>
+      <div class="dropdown-footer">
+        <span>Total: €<span id="dropdownTotal">0.00</span></span>
+        <button id="goToOrderForm" class="dropdown-checkout">Ver pedido</button>
+      </div>
+    </div>
+    <div class="cart-icon">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cartCountBadge" class="cart-badge">0</span>
+    </div>
+    <span id="cartSubtotalFloating" class="cart-subtotal">€0.00</span>
+  </div>
+
+  <!-- TOAST MESSAGE -->
+  <div id="toastMessage" class="toast-message"></div>
 
   <!-- RODAPÉ -->
   <footer class="site-footer">
@@ -356,33 +377,5 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="script.js"></script>
-  <!-- Ícone do carrinho flutuante com contador e subtotal -->
-<div id="cartFloating" class="cart-floating">
-
-  <div id="cartDropdown" class="cart-dropdown">
-    
-    <div class="dropdown-header">
-      <span>Seus itens</span>
-      <button id="closeCartDropdown" class="close-dropdown">✕</button>
-    </div>
-
-    <div id="cartItemsPreview" class="cart-items-preview"></div>
-
-    <div class="dropdown-footer">
-      <span>Total: €<span id="dropdownTotal">0.00</span></span>
-      <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Ver pedido</button>
-    </div>
-
-</div>
-
-  <div class="cart-icon">
-    <i class="fa-solid fa-cart-shopping"></i>
-    <span id="cartCountBadge" class="cart-badge">0</span>
-  </div>
-  <span id="cartSubtotalFloating" class="cart-subtotal">€0.00</span>
-</div>
-
-<div id="toastMessage" class="toast-message"></div>
-
 </body>
 </html>

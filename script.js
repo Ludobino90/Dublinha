@@ -1,4 +1,4 @@
-/* script.js - versão com todas as atualizações */
+/* script.js - versão com todas as atualizações e dropdown funcional */
 
 // ========== CONFIGURAÇÕES ==========
 const WHATSAPP_NUMBER = '353832023836'
@@ -62,7 +62,7 @@ const translations = {
     add_button: "Add",
     quick_kits: "Quick Kits",
     50: "📦 Party Kit 50 units",
-    100: "Party Kit 100 units",
+    100: "📦 Party Kit 100 units",
     selected_items: "Selected items",
     subtotal: "Subtotal",
     form_note: "By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site.",
@@ -209,7 +209,7 @@ function setLanguage(lang) {
   document.getElementById("mobile-lang-" + lang)?.classList.add("active")
 }
 
-// ========== TROCA DE IDIOMA ==========
+// ========== FUNÇÃO DE TOAST ==========
 function showToast(text) {
   const toast = document.getElementById('toastMessage');
   if (!toast) return;
@@ -220,8 +220,72 @@ function showToast(text) {
   }, 2000);
 }
 
+// ========== ATUALIZAR PEDIDO ==========
+function updateOrder() {
+  const container = document.getElementById("orderItems");
+  container.innerHTML = "";
+  total = 0;
+
+  orderList.forEach((item, index) => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+
+    const token = document.createElement("div");
+    token.className = "token";
+    token.innerHTML = `
+      <strong>${item.qty}x</strong> ${item.name} ${item.size} €${subtotal.toFixed(2)}
+      <button onclick="removeItem(${index})">x</button>
+    `;
+    container.appendChild(token);
+  });
+
+  document.getElementById("orderTotal").innerText = total.toFixed(2);
+
+  // Atualiza preview do dropdown
+  const preview = document.getElementById('cartItemsPreview');
+  if (preview) {
+    preview.innerHTML = '';
+    orderList.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'preview-item';
+      div.innerHTML = `<span>${item.qty}x ${item.name} (${item.size})</span><span>€${(item.price * item.qty).toFixed(2)}</span>`;
+      preview.appendChild(div);
+    });
+    document.getElementById('dropdownTotal').innerText = total.toFixed(2);
+  }
+
+  // Atualiza badge e subtotal flutuante
+  const cartBadge = document.getElementById('cartCountBadge');
+  const cartSub = document.getElementById('cartSubtotalFloating');
+  if (cartBadge) {
+    let totalItems = orderList.reduce((acc, item) => acc + item.qty, 0);
+    cartBadge.innerText = totalItems;
+  }
+  if (cartSub) {
+    cartSub.innerText = '€' + total.toFixed(2);
+  }
+
+  // (Opcional) Atualiza elementos antigos, caso existam
+  const oldCartCount = document.getElementById("cartCount");
+  const oldCartSubtotal = document.getElementById("cartSubtotal");
+  if (oldCartCount) {
+    let count = orderList.reduce((acc, item) => acc + item.qty, 0);
+    oldCartCount.innerText = count + " items";
+  }
+  if (oldCartSubtotal) {
+    oldCartSubtotal.innerText = "€" + total.toFixed(2);
+  }
+}
+
+// ========== REMOVER ITEM ==========
+function removeItem(index) {
+  orderList.splice(index, 1);
+  updateOrder();
+}
+
 // ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function() {
+    
   document.getElementById('year').textContent = new Date().getFullYear()
 
   // idioma salvo
@@ -283,10 +347,8 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         product.classList.remove("added")
       }, 300)
-      
 
       updateOrder()
-
       showToast(translations[currentLang].added_to_cart || 'Item adicionado!');
     })
   })
@@ -307,22 +369,50 @@ document.addEventListener('DOMContentLoaded', function() {
         })
       }
       updateOrder()
+      showToast(translations[currentLang].added_to_cart || 'Item adicionado!');
     })
   })
-    // Clique no carrinho flutuante leva ao formulário
-  const cartFloating = document.getElementById('cartFloating');
-  if (cartFloating) {
-    cartFloating.addEventListener('click', function() {
-      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
 
-  // ========== MINI CART ==========
-    const viewCartBtn = document.getElementById("viewCartBtn")
-  if (viewCartBtn) {
-    viewCartBtn.addEventListener("click", function() {
-      document.getElementById("contato").scrollIntoView({ behavior: "smooth" })
-    })
+  // ========== CARRINHO FLUTUANTE (dropdown) ==========
+  const cartFloating = document.getElementById('cartFloating');
+  const cartDropdown = document.getElementById('cartDropdown');
+  const closeDropdown = document.getElementById('closeCartDropdown');
+  const goToOrderBtn = document.getElementById('goToOrderForm');
+
+  if (cartFloating && cartDropdown) {
+    // Abrir/fechar dropdown ao clicar no ícone (impedir que o clique no dropdown feche)
+    cartFloating.addEventListener('click', function(e) {
+      // Se clicou no botão de fechar ou no botão "Ver pedido", não altera o dropdown (eles têm seus próprios eventos)
+      if (e.target.closest('.close-dropdown') || e.target.closest('.dropdown-checkout')) {
+        return;
+      }
+      // Se clicou no ícone ou área do carrinho (exceto dropdown), alterna
+      cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Fechar dropdown ao clicar no X
+    if (closeDropdown) {
+      closeDropdown.addEventListener('click', function(e) {
+        e.stopPropagation(); // Evita que o clique chegue no cartFloating
+        cartDropdown.style.display = 'none';
+      });
+    }
+
+    // Botão "Ver pedido" dentro do dropdown rola até o formulário e fecha dropdown
+    if (goToOrderBtn) {
+      goToOrderBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+        cartDropdown.style.display = 'none';
+      });
+    }
+
+    // Fechar dropdown ao clicar fora dele (opcional, boa prática)
+    document.addEventListener('click', function(e) {
+      if (!cartFloating.contains(e.target)) {
+        cartDropdown.style.display = 'none';
+      }
+    });
   }
 
   // ========== ENVIO WHATSAPP ==========
@@ -361,237 +451,128 @@ document.addEventListener('DOMContentLoaded', function() {
     window.open(whatsappUrl, '_blank');
   });
 
- // ========== WHATSAPP FLUTUANTE ARRASTÁVEL (com clique funcionando) ==========
-(function() {
-  const whatsappBtn = document.getElementById('whatsappFloating');
-  if (!whatsappBtn) return;
+  // ========== WHATSAPP FLUTUANTE ARRASTÁVEL ==========
+  (function() {
+    const whatsappBtn = document.getElementById('whatsappFloating');
+    if (!whatsappBtn) return;
 
-  // Estado do arrasto
-  let isDragging = false;
-  let startX, startY;
-  let startLeft, startTop;
-  let hasMoved = false;
+    let isDragging = false;
+    let startX, startY;
+    let startLeft, startTop;
+    let hasMoved = false;
+    const MOVE_THRESHOLD = 8;
 
-  // Threshold para considerar como movimento (aumentado para 8px)
-  const MOVE_THRESHOLD = 8;
-
-  // Função para garantir que o botão permaneça dentro da viewport
-  function clampPosition(left, top) {
-    const btnWidth = whatsappBtn.offsetWidth;
-    const btnHeight = whatsappBtn.offsetHeight;
-    const maxLeft = window.innerWidth - btnWidth;
-    const maxTop = window.innerHeight - btnHeight;
-    left = Math.min(Math.max(left, 0), maxLeft);
-    top = Math.min(Math.max(top, 0), maxTop);
-    return { left, top };
-  }
-
-  // Inicializa a posição convertendo right/bottom para left/top
-  function initializePosition() {
-    const rect = whatsappBtn.getBoundingClientRect();
-    let newLeft = rect.left;
-    let newTop = rect.top;
-    const clamped = clampPosition(newLeft, newTop);
-    whatsappBtn.style.left = clamped.left + 'px';
-    whatsappBtn.style.top = clamped.top + 'px';
-    whatsappBtn.style.right = 'auto';
-    whatsappBtn.style.bottom = 'auto';
-  }
-
-  // Chama a inicialização após o carregamento total
-  if (document.readyState === 'complete') {
-    initializePosition();
-  } else {
-    window.addEventListener('load', initializePosition);
-  }
-
-  // Reajusta a posição se a janela for redimensionada
-  window.addEventListener('resize', () => {
-    const currentLeft = parseFloat(whatsappBtn.style.left) || 0;
-    const currentTop = parseFloat(whatsappBtn.style.top) || 0;
-    const clamped = clampPosition(currentLeft, currentTop);
-    whatsappBtn.style.left = clamped.left + 'px';
-    whatsappBtn.style.top = clamped.top + 'px';
-  });
-
-  // ----- Funções de arrasto -----
-  function startDrag(clientX, clientY) {
-    isDragging = true;
-    hasMoved = false;  // reseta o flag de movimento
-    const rect = whatsappBtn.getBoundingClientRect();
-    startLeft = rect.left;
-    startTop = rect.top;
-    startX = clientX;
-    startY = clientY;
-  }
-
-  function onDrag(clientX, clientY) {
-    if (!isDragging) return;
-
-    const dx = clientX - startX;
-    const dy = clientY - startY;
-
-    // Se o movimento ultrapassar o threshold, marca como arrasto
-    if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) {
-      hasMoved = true;
+    function clampPosition(left, top) {
+      const btnWidth = whatsappBtn.offsetWidth;
+      const btnHeight = whatsappBtn.offsetHeight;
+      const maxLeft = window.innerWidth - btnWidth;
+      const maxTop = window.innerHeight - btnHeight;
+      left = Math.min(Math.max(left, 0), maxLeft);
+      top = Math.min(Math.max(top, 0), maxTop);
+      return { left, top };
     }
 
-    let newLeft = startLeft + dx;
-    let newTop = startTop + dy;
-
-    const clamped = clampPosition(newLeft, newTop);
-    whatsappBtn.style.left = clamped.left + 'px';
-    whatsappBtn.style.top = clamped.top + 'px';
-  }
-
-  function endDrag() {
-    isDragging = false;
-    // Não resetamos hasMoved aqui porque ele será usado no clique.
-    // O hasMoved será resetado no próximo startDrag.
-  }
-
-  // ----- Eventos Touch -----
-  whatsappBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // evita rolagem da página
-    const touch = e.touches[0];
-    startDrag(touch.clientX, touch.clientY);
-  }, { passive: false });
-
-  whatsappBtn.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    onDrag(touch.clientX, touch.clientY);
-  }, { passive: false });
-
-  whatsappBtn.addEventListener('touchend', (e) => {
-    endDrag();
-    // Se não houve movimento e o clique não foi disparado (raro), forçamos a abertura do link
-    if (!hasMoved) {
-      // O navegador normalmente dispara o evento de click, mas se não disparar,
-      // podemos simular o clique manualmente. No entanto, isso pode causar duplicidade.
-      // Por segurança, deixamos o próprio evento click lidar com isso.
-      // (O código abaixo é opcional e pode ser removido se o click funcionar)
-      // whatsappBtn.click(); 
+    function initializePosition() {
+      const rect = whatsappBtn.getBoundingClientRect();
+      let newLeft = rect.left;
+      let newTop = rect.top;
+      const clamped = clampPosition(newLeft, newTop);
+      whatsappBtn.style.left = clamped.left + 'px';
+      whatsappBtn.style.top = clamped.top + 'px';
+      whatsappBtn.style.right = 'auto';
+      whatsappBtn.style.bottom = 'auto';
     }
-  });
 
-  whatsappBtn.addEventListener('touchcancel', endDrag);
+    if (document.readyState === 'complete') {
+      initializePosition();
+    } else {
+      window.addEventListener('load', initializePosition);
+    }
 
-  // ----- Eventos Mouse -----
-  whatsappBtn.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    startDrag(e.clientX, e.clientY);
-  });
+    window.addEventListener('resize', () => {
+      const currentLeft = parseFloat(whatsappBtn.style.left) || 0;
+      const currentTop = parseFloat(whatsappBtn.style.top) || 0;
+      const clamped = clampPosition(currentLeft, currentTop);
+      whatsappBtn.style.left = clamped.left + 'px';
+      whatsappBtn.style.top = clamped.top + 'px';
+    });
 
-  window.addEventListener('mousemove', (e) => {
-    onDrag(e.clientX, e.clientY);
-  });
-
-  window.addEventListener('mouseup', endDrag);
-
-  // ----- Impede a abertura do link se houve arrasto -----
-  whatsappBtn.addEventListener('click', (e) => {
-    if (hasMoved) {
-      e.preventDefault();
-      e.stopPropagation();
-      // Reset hasMoved para garantir que o próximo clique sem arrasto funcione
+    function startDrag(clientX, clientY) {
+      isDragging = true;
       hasMoved = false;
+      const rect = whatsappBtn.getBoundingClientRect();
+      startLeft = rect.left;
+      startTop = rect.top;
+      startX = clientX;
+      startY = clientY;
     }
-    // Se hasMoved for false, o link abre normalmente.
-  });
 
-})();
+    function onDrag(clientX, clientY) {
+      if (!isDragging) return;
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+      if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) {
+        hasMoved = true;
+      }
+      let newLeft = startLeft + dx;
+      let newTop = startTop + dy;
+      const clamped = clampPosition(newLeft, newTop);
+      whatsappBtn.style.left = clamped.left + 'px';
+      whatsappBtn.style.top = clamped.top + 'px';
+    }
+
+    function endDrag() {
+      isDragging = false;
+    }
+
+    whatsappBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      startDrag(touch.clientX, touch.clientY);
+    }, { passive: false });
+
+    whatsappBtn.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      onDrag(touch.clientX, touch.clientY);
+    }, { passive: false });
+
+    whatsappBtn.addEventListener('touchend', endDrag);
+    whatsappBtn.addEventListener('touchcancel', endDrag);
+
+    whatsappBtn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      startDrag(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      onDrag(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', endDrag);
+
+    whatsappBtn.addEventListener('click', (e) => {
+      if (hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        hasMoved = false;
+      }
+    });
+  })();
 
   // ========== MENU HAMBURGER ==========
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  navToggle.addEventListener('click', function() {
-    mobileMenu.classList.toggle('show');
-  });
-
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', function() {
-      mobileMenu.classList.remove('show');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('show');
     });
-  });
-})
 
-// ========== ATUALIZAR PEDIDO ==========
-function updateOrder() {
-  const container = document.getElementById("orderItems");
-  container.innerHTML = "";
-  total = 0;
-
-  orderList.forEach((item, index) => {
-    const subtotal = item.price * item.qty;
-    total += subtotal;
-
-    const token = document.createElement("div");
-    token.className = "token";
-    token.innerHTML = `
-      <strong>${item.qty}x</strong> ${item.name} ${item.size} €${subtotal.toFixed(2)}
-      <button onclick="removeItem(${index})">x</button>
-    `;
-    container.appendChild(token);
-  });
-
-  document.getElementById("orderTotal").innerText = total.toFixed(2);
-
-  // Atualiza o preview do carrinho
-
-  const preview = document.getElementById('cartItemsPreview');
-if (preview) {
-  preview.innerHTML = '';
-  orderList.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'preview-item';
-    div.innerHTML = `<span>${item.qty}x ${item.name} (${item.size})</span><span>€${(item.price * item.qty).toFixed(2)}</span>`;
-    preview.appendChild(div);
-  });
-  document.getElementById('dropdownTotal').innerText = total.toFixed(2);
-}
-
-  // --- Atualiza o novo carrinho flutuante ---
-  const cartBadge = document.getElementById('cartCountBadge');
-  const cartSub = document.getElementById('cartSubtotalFloating');
-  if (cartBadge) {
-    let totalItems = orderList.reduce((acc, item) => acc + item.qty, 0);
-    cartBadge.innerText = totalItems;
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+      });
+    });
   }
-  if (cartSub) {
-    cartSub.innerText = '€' + total.toFixed(2);
-  }
-
-  // --- (Opcional) Atualiza elementos antigos, caso ainda existam ---
-  const oldCartCount = document.getElementById("cartCount");
-  const oldCartSubtotal = document.getElementById("cartSubtotal");
-  if (oldCartCount) {
-    let count = orderList.reduce((acc, item) => acc + item.qty, 0);
-    oldCartCount.innerText = count + " items";
-  }
-  if (oldCartSubtotal) {
-    oldCartSubtotal.innerText = "€" + total.toFixed(2);
-  }
-}
-
-// ========== REMOVER ITEM ==========
-function removeItem(index) {
-  orderList.splice(index, 1)
-  updateOrder()
-}
-
-// TOAST MESSAGE (função para mostrar mensagens temporárias)
-function showToast(text) {
-  const toast = document.getElementById('toastMessage');
-  toast.textContent = text;
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2000);
-}
-
-// ========== BOTAO DE FECHAR OS PRODUTOS DO CARRINHO ==========
-document.getElementById('closeCartDropdown').addEventListener('click', function() {
-  document.getElementById('cartDropdown').style.display = 'none';
 });

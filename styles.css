@@ -73,7 +73,7 @@ body {
 
 /* Navegação desktop */
 .main-nav {
-  display: none; /* mobile first: escondido */
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 24px;
@@ -99,6 +99,7 @@ body {
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 .language-selector button:hover {
   background: rgba(255,122,24,0.1);
@@ -146,7 +147,7 @@ body {
   border-top: 1px solid rgba(0,0,0,0.03);
 }
 .mobile-menu.show {
-  display: flex; /* classe para exibir quando ativo */
+  display: flex;
 }
 .mobile-menu .mobile-link {
   text-decoration: none;
@@ -212,9 +213,9 @@ body {
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas no mobile */
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  align-items: stretch; /* Faz todos os cards terem a mesma altura */
+  align-items: stretch;
 }
 
 .product {
@@ -226,7 +227,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid #f1f3f5;
-  height: 100%; /* Ocupa toda a altura da célula do grid */
+  height: 100%;
 }
 
 .product:hover {
@@ -235,43 +236,41 @@ body {
   border-color: #E63946;
 }
 
-/* Título com altura fixa (2 linhas) */
 .product h3 {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 12px 0 4px;
   color: #212529;
-  min-height: 2.8rem; /* Espaço para 2 linhas (ajuste fino) */
+  min-height: 2.8rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limita a 2 linhas */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
 }
 
-/* Descrição com altura fixa (3 linhas) */
 .product .desc {
   margin: 0 0 12px;
   color: #6C757D;
   font-size: 0.9rem;
-  min-height: 3.9rem; /* Espaço para 3 linhas */
+  min-height: 3.9rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limita a 3 linhas */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  margin-bottom: 12px;
   flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
 }
-/* Área do preço */
+
 .product .price {
   font-size: 1.4rem;
   font-weight: 800;
   color: #2A9D8F;
   margin: 8px 0;
 }
+
 /* Formulário */
 .order-form-wrap {
   background: #F8F9FA;
@@ -295,7 +294,6 @@ body {
   font-size: 1rem;
   transition: border 0.2s;
 }
-
 .order-form input:focus,
 .order-form textarea:focus {
   outline: none;
@@ -349,13 +347,11 @@ body {
   text-align: center;
   border: 1px solid #f1f3f5;
 }
-
 .card i {
   color: #E63946;
   font-size: 2.5rem;
   margin-bottom: 12px;
 }
-
 .card h4 { 
   font-size: 1.2rem;
   margin: 8px 0;
@@ -408,12 +404,11 @@ body {
 /* WhatsApp Flutuante */
 .whatsapp-floating {
   position: fixed;
-  /* Posição inicial padrão (canto inferior direito) - será sobrescrita pelo JS */
   bottom: 20px;
   right: 20px;
   left: auto;
   top: auto;
-  z-index: 9999; /* valor alto para ficar acima de tudo */
+  z-index: 9999;
   background: linear-gradient(180deg, #25D366, #128C7E);
   color: #fff;
   width: 56px;
@@ -424,26 +419,20 @@ body {
   justify-content: center;
   box-shadow: 0 10px 30px rgba(18,140,126,0.3);
   text-decoration: none;
-  touch-action: none;         /* essencial para touch */
-  user-select: none;          /* evita seleção ao arrastar */
+  touch-action: none;
+  user-select: none;
   cursor: grab;
-  /* Sem transition para não atrapalhar o arrasto */
   transition: none;
 }
-
-/* Ajuste para mobile (até 768px, por exemplo) */
 @media (max-width: 768px) {
   .whatsapp-floating {
     bottom: 80px; 
     right: 60px;   
   }
 }
-
 .whatsapp-floating:active {
   cursor: grabbing;
 }
-
-/* Para garantir que o ícone dentro também não interfira */
 .whatsapp-floating i {
   pointer-events: none;
 }
@@ -460,7 +449,7 @@ body {
     display: none !important;
   }
   .product-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
+    grid-template-columns: repeat(3, 1fr);
   }
   .cards {
     grid-template-columns: repeat(3, 1fr);
@@ -473,10 +462,10 @@ body {
 /* Ajuste fino para telas muito pequenas */
 @media (max-width: 480px) {
   .product-grid {
-    gap: 10px; /* Reduz um pouco o espaçamento em telas muito pequenas */
+    gap: 10px;
   }
   .product {
-    padding: 12px; /* Ajusta o padding interno */
+    padding: 12px;
   }
   .product h3 {
     font-size: 1rem;
@@ -511,12 +500,11 @@ a:focus, button:focus, input:focus, textarea:focus {
   margin-bottom: 8px;
 }
 
-/* Área do seletor de tamanho (sempre no mesmo lugar) */
 .size-selector {
   display: flex;
   gap: 6px;
   margin: 8px 0;
-  flex-shrink: 0; /* Não encolhe */
+  flex-shrink: 0;
 }
 
 .size-btn {
@@ -531,18 +519,15 @@ a:focus, button:focus, input:focus, textarea:focus {
   cursor: pointer;
   transition: all 0.2s;
 }
-
-.size-btn.small { background: #f536218f; color: rgb(255, 255, 255);}
-.size-btn.medium { background: #f536218f; color: rgb(255, 255, 255);}
-.size-btn.large { background: #f536218f; color: rgb(255, 255, 255); }
-
+.size-btn.small, .size-btn.medium, .size-btn.large {
+  /* cores padrão já definidas, mas manteremos a sobrescrita para active */
+}
 .size-btn.active {
   background: #E63946;
   border-color: #E63946;
   color: white;
 }
 
-/* Controles de quantidade e botão adicionar (sempre no fundo) */
 .qty-control {
   display: flex;
   align-items: center;
@@ -550,9 +535,32 @@ a:focus, button:focus, input:focus, textarea:focus {
   gap: 12px;
   margin: 12px 0;
 }
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #dee2e6;
+  background: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #E63946;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qty-btn:hover {
+  background: #E63946;
+  color: white;
+  border-color: #E63946;
+}
+.qty {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
 
 .add-item {
-  margin-top: auto; /* Empurra para o final do card */
+  margin-top: auto;
   background: #2A9D8F;
   color: white;
   border: none;
@@ -563,7 +571,6 @@ a:focus, button:focus, input:focus, textarea:focus {
   cursor: pointer;
   transition: background 0.2s;
 }
-
 .add-item:hover {
   background: #21867a;
 }
@@ -574,7 +581,6 @@ a:focus, button:focus, input:focus, textarea:focus {
   gap: 6px;
   margin: 10px 0;
 }
-
 .token {
   background: white;
   border: 1px solid #dee2e6;
@@ -593,14 +599,12 @@ a:focus, button:focus, input:focus, textarea:focus {
   cursor: pointer;
   margin-left: 4px;
 }
-
 .order-total {
   font-weight: 700;
   margin-bottom: 10px;
   color: #f53621;
 }
 
-/* Badge "Best Seller" mantém posição absoluta */
 .badge-best {
   position: absolute;
   top: 12px;
@@ -615,46 +619,9 @@ a:focus, button:focus, input:focus, textarea:focus {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* QUANTITY CONTROL */
-.qty-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px 0;
-}
-
-.qty-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid #dee2e6;
-  background: white;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #E63946;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.qty-btn:hover {
-  background: #E63946;
-  color: white;
-  border-color: #E63946;
-}
-
-.qty {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-/* ADD ANIMATION */
 .product.added {
   animation: addPop 0.35s ease;
 }
-
 @keyframes addPop {
   0% { transform: scale(1); }
   50% { transform: scale(1.06); }
@@ -666,14 +633,12 @@ a:focus, button:focus, input:focus, textarea:focus {
   margin-top: 30px;
   text-align: center;
 }
-
 .kits {
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
 }
-
 .kit-btn {
   background: white;
   border: 2px solid #E63946;
@@ -692,48 +657,12 @@ a:focus, button:focus, input:focus, textarea:focus {
   background: #E63946;
   color: white;
 }
-.kit-btn i { /* se quiser ícone */
-  font-size: 1.2rem;
-}
 
-/* MOBILE CART */
-.mobile-cart {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 999;
-}
-
-.mobile-cart button {
-  background: #25D366;
-  border: none;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-@media (min-width: 768px) {
-  .mobile-cart {
-    display: none;
-  }
-  
-}
-
-/* TESTES */
-
-/* Carrinho flutuante estilo ícone */
+/* CARRINHO FLUTUANTE */
 .cart-floating {
   position: fixed;
   bottom: 20px;
-  left: 20px; /* ou right: 20px, se preferir */
+  left: 20px;
   z-index: 9998;
   display: flex;
   align-items: center;
@@ -744,33 +673,29 @@ a:focus, button:focus, input:focus, textarea:focus {
   cursor: pointer;
   transition: transform 0.2s;
 }
-
 .cart-floating:hover {
   transform: scale(1.05);
 }
-
 .cart-icon {
   position: relative;
   width: 40px;
   height: 40px;
-  background: #E63946; /* vermelho do seu tema */
+  background: #E63946;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 8px;
 }
-
 .cart-icon i {
   color: white;
   font-size: 18px;
 }
-
 .cart-badge {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: #FFB703; /* laranja/amarelo */
+  background: #FFB703;
   color: #212529;
   font-size: 11px;
   font-weight: bold;
@@ -784,40 +709,20 @@ a:focus, button:focus, input:focus, textarea:focus {
   border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
 .cart-subtotal {
   color: #E63946;
   font-weight: 700;
   font-size: 0.9rem;
 }
 
-/* Se quiser que o carrinho apareça apenas em mobile, descomente a media query abaixo */
+/* Esconder carrinho em desktop se desejado */
 @media (min-width: 768px) {
   .cart-floating {
-    /*display: none;*/ /* Esconde o carrinho flutuante em telas maiores */ 
+    /* display: none; /* Descomente se quiser esconder em desktop */
   }
 }
 
-.toast-message {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2A9D8F;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 40px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-weight: 600;
-  z-index: 10000;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-.toast-message.show {
-  opacity: 1;
-}
-
+/* DROPDOWN DO CARRINHO */
 .cart-dropdown {
   position: absolute;
   bottom: 60px;
@@ -830,10 +735,6 @@ a:focus, button:focus, input:focus, textarea:focus {
   display: none;
   z-index: 10001;
 }
-.cart-floating:hover .cart-dropdown {
-  display: block; /* aparece ao passar o mouse */
-}
-/* para mobile, talvez toggle via clique */
 .cart-dropdown .dropdown-header {
   display: flex;
   justify-content: space-between;
@@ -842,9 +743,6 @@ a:focus, button:focus, input:focus, textarea:focus {
   margin-bottom: 8px;
   color: #E63946;
 }
-
-/* Botão de fechar (X) no dropdown */
-
 .close-dropdown {
   background: none;
   border: none;
@@ -855,7 +753,6 @@ a:focus, button:focus, input:focus, textarea:focus {
 .close-dropdown:hover {
   color: #E63946;
 }
-
 .cart-items-preview {
   max-height: 200px;
   overflow-y: auto;
@@ -883,4 +780,28 @@ a:focus, button:focus, input:focus, textarea:focus {
   border-radius: 20px;
   font-size: 0.8rem;
   cursor: pointer;
+}
+.dropdown-footer button:hover {
+  background: #21867a;
+}
+
+/* TOAST MESSAGE */
+.toast-message {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2A9D8F;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 600;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast-message.show {
+  opacity: 1;
 }
