@@ -835,10 +835,27 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 /* para mobile, talvez toggle via clique */
 .cart-dropdown .dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: 700;
   margin-bottom: 8px;
   color: #E63946;
 }
+
+/* Botão de fechar (X) no dropdown */
+
+.close-dropdown {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+.close-dropdown:hover {
+  color: #E63946;
+}
+
 .cart-items-preview {
   max-height: 200px;
   overflow-y: auto;

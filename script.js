@@ -590,3 +590,8 @@ function showToast(text) {
     toast.classList.remove('show');
   }, 2000);
 }
+
+// ========== BOTAO DE FECHAR OS PRODUTOS DO CARRINHO ==========
+document.getElementById('closeCartDropdown').addEventListener('click', function() {
+  document.getElementById('cartDropdown').style.display = 'none';
+});

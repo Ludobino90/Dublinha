@@ -360,14 +360,19 @@
 <div id="cartFloating" class="cart-floating">
 
   <div id="cartDropdown" class="cart-dropdown">
-    <div class="dropdown-header">Seus itens</div>
+    
+    <div class="dropdown-header">
+      <span>Seus itens</span>
+      <button id="closeCartDropdown" class="close-dropdown">✕</button>
+    </div>
+
     <div id="cartItemsPreview" class="cart-items-preview"></div>
 
     <div class="dropdown-footer">
       <span>Total: €<span id="dropdownTotal">0.00</span></span>
       <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Ver pedido</button>
     </div>
-    
+
 </div>
 
   <div class="cart-icon">
