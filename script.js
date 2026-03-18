@@ -329,40 +329,134 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ========== WHATSAPP FLUTUANTE ARRASTÁVEL ==========
+  (function() {
   const whatsappBtn = document.getElementById('whatsappFloating');
-  let isDragging = false;
-  let startX, startY, offsetX = 0, offsetY = 0;
+  if (!whatsappBtn) return;
 
-  whatsappBtn.addEventListener('click', function(e) {
-    if (isDragging) {
+  // Estado do arrasto
+  let isDragging = false;
+  let startX, startY;
+  let startLeft, startTop;
+  let hasMoved = false;
+
+  // Função para garantir que o botão permaneça dentro da viewport
+  function clampPosition(left, top) {
+    const btnWidth = whatsappBtn.offsetWidth;
+    const btnHeight = whatsappBtn.offsetHeight;
+    const maxLeft = window.innerWidth - btnWidth;
+    const maxTop = window.innerHeight - btnHeight;
+
+    left = Math.min(Math.max(left, 0), maxLeft);
+    top = Math.min(Math.max(top, 0), maxTop);
+    return { left, top };
+  }
+
+  // Inicializa a posição do botão convertendo right/bottom para left/top
+  function initializePosition() {
+    // Pega a posição atual do elemento (pode estar com right/bottom)
+    const rect = whatsappBtn.getBoundingClientRect();
+    // Define left e top com base na posição atual (garantindo limites)
+    let newLeft = rect.left;
+    let newTop = rect.top;
+
+    // Aplica limites já na inicialização
+    const clamped = clampPosition(newLeft, newTop);
+    whatsappBtn.style.left = clamped.left + 'px';
+    whatsappBtn.style.top = clamped.top + 'px';
+    // Remove right/bottom para não conflitar
+    whatsappBtn.style.right = 'auto';
+    whatsappBtn.style.bottom = 'auto';
+  }
+
+  // Chama a inicialização após o carregamento total (para garantir medidas corretas)
+  if (document.readyState === 'complete') {
+    initializePosition();
+  } else {
+    window.addEventListener('load', initializePosition);
+  }
+
+  // Reajusta a posição se a janela for redimensionada (mantém dentro da tela)
+  window.addEventListener('resize', () => {
+    const currentLeft = parseFloat(whatsappBtn.style.left) || 0;
+    const currentTop = parseFloat(whatsappBtn.style.top) || 0;
+    const clamped = clampPosition(currentLeft, currentTop);
+    whatsappBtn.style.left = clamped.left + 'px';
+    whatsappBtn.style.top = clamped.top + 'px';
+  });
+
+  // ----- Funções de arrasto (comuns para touch e mouse) -----
+  function startDrag(clientX, clientY) {
+    isDragging = true;
+    hasMoved = false;
+    const rect = whatsappBtn.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top;
+    startX = clientX;
+    startY = clientY;
+  }
+
+  function onDrag(clientX, clientY) {
+    if (!isDragging) return;
+
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+
+    // Se houve movimento mínimo (5px), marcamos como arrasto
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+      hasMoved = true;
+    }
+
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+
+    const clamped = clampPosition(newLeft, newTop);
+    whatsappBtn.style.left = clamped.left + 'px';
+    whatsappBtn.style.top = clamped.top + 'px';
+  }
+
+  function endDrag() {
+    isDragging = false;
+  }
+
+  // ----- Eventos Touch (mobile/tablet) -----
+  whatsappBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // evita rolagem da página
+    const touch = e.touches[0];
+    startDrag(touch.clientX, touch.clientY);
+  }, { passive: false });
+
+  whatsappBtn.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // essencial para não rolar a página
+    const touch = e.touches[0];
+    onDrag(touch.clientX, touch.clientY);
+  }, { passive: false });
+
+  whatsappBtn.addEventListener('touchend', endDrag);
+  whatsappBtn.addEventListener('touchcancel', endDrag);
+
+  // ----- Eventos Mouse (desktop) -----
+  whatsappBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    startDrag(e.clientX, e.clientY);
+  });
+
+  // Usamos window para mousemove e mouseup para capturar fora do botão
+  window.addEventListener('mousemove', (e) => {
+    onDrag(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('mouseup', endDrag);
+
+  // ----- Impede a abertura do link se houve arrasto -----
+  whatsappBtn.addEventListener('click', (e) => {
+    if (hasMoved) {
       e.preventDefault();
       e.stopPropagation();
+      // Reset hasMoved para o próximo clique
+      hasMoved = false;
     }
-    isDragging = false;
   });
-
-  whatsappBtn.addEventListener('touchstart', function(e) {
-    const touch = e.touches[0];
-    startX = touch.clientX - offsetX;
-    startY = touch.clientY - offsetY;
-    isDragging = false;
-  });
-
-  whatsappBtn.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    const touch = e.touches[0];
-    offsetX = touch.clientX - startX;
-    offsetY = touch.clientY - startY;
-
-    const btnRect = whatsappBtn.getBoundingClientRect();
-    const maxX = window.innerWidth - btnRect.width;
-    const maxY = window.innerHeight - btnRect.height;
-    let newX = Math.min(Math.max(offsetX, 0), maxX);
-    let newY = Math.min(Math.max(offsetY, 0), maxY);
-
-    whatsappBtn.style.transform = `translate(${newX}px, ${newY}px)`;
-    isDragging = true;
-  });
+})();
 
   // ========== MENU HAMBURGER ==========
   const navToggle = document.getElementById('navToggle');

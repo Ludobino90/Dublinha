@@ -334,9 +334,12 @@ body {
 /* WhatsApp Flutuante */
 .whatsapp-floating {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 100;
+  /* Posição inicial padrão (canto inferior direito) - será sobrescrita pelo JS */
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  top: auto;
+  z-index: 9999; /* valor alto para ficar acima de tudo */
   background: linear-gradient(180deg, #25D366, #128C7E);
   color: #fff;
   width: 56px;
@@ -345,10 +348,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(18,140,126,0.18);
+  box-shadow: 0 10px 30px rgba(18,140,126,0.3);
   text-decoration: none;
-  touch-action: none; /* importante para o arrasto */
-  transition: transform 0.2s; /* suaviza o movimento */
+  touch-action: none;         /* essencial para touch */
+  user-select: none;          /* evita seleção ao arrastar */
+  cursor: grab;
+  /* Sem transition para não atrapalhar o arrasto */
+  transition: none;
+}
+
+.whatsapp-floating:active {
+  cursor: grabbing;
+}
+
+/* Para garantir que o ícone dentro também não interfira */
+.whatsapp-floating i {
+  pointer-events: none;
 }
 
 /* Desktop e tablets */
@@ -562,4 +577,5 @@ a:focus, button:focus, input:focus, textarea:focus {
   .mobile-cart {
     display: none;
   }
+  
 }
