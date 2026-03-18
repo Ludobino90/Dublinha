@@ -65,7 +65,8 @@ const translations = {
     100: "Party Kit 100 units",
     selected_items: "Selected items",
     subtotal: "Subtotal",
-    form_note: "By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site."
+    form_note: "By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site.",
+    added_to_cart: "Item added to cart!",
   },
   pt: {
     tagline: "Coxinhas • Pastéis • Massas",
@@ -122,7 +123,8 @@ const translations = {
     100: "📦 Kit Festa 100 unidades",
     selected_items: "Itens selecionados",
     subtotal: "Subtotal",
-    form_note: "Ao clicar, você será redirecionado para o WhatsApp com a mensagem pré-preenchida. Nenhum dado é armazenado neste site."
+    form_note: "Ao clicar, você será redirecionado para o WhatsApp com a mensagem pré-preenchida. Nenhum dado é armazenado neste site.",
+    added_to_cart: "Item adicionado ao carrinho!",
   },
   es: {
     tagline: "Coxinhas • Pasteles • Masas",
@@ -179,14 +181,18 @@ const translations = {
     100: "📦 Kit Fiesta 100 unidades",
     selected_items: "Artículos seleccionados",
     subtotal: "Subtotal",
-    form_note: "Al hacer clic, serás redirigido a WhatsApp con el mensaje prellenado. No se almacenan datos en este sitio."
+    form_note: "Al hacer clic, serás redirigido a WhatsApp con el mensaje prellenado. No se almacenan datos en este sitio.",
+    added_to_cart: "¡Artículo añadido al carrito!",
   }
 }
+
+let currentLang = localStorage.getItem('lang') || 'en';
 
 // ========== FUNÇÃO DE TRADUÇÃO ==========
 function setLanguage(lang) {
   localStorage.setItem("lang", lang)
   document.documentElement.lang = lang
+  currentLang = lang;
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n")
@@ -201,6 +207,17 @@ function setLanguage(lang) {
 
   document.getElementById("lang-" + lang)?.classList.add("active")
   document.getElementById("mobile-lang-" + lang)?.classList.add("active")
+}
+
+// ========== TROCA DE IDIOMA ==========
+function showToast(text) {
+  const toast = document.getElementById('toastMessage');
+  if (!toast) return;
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2000);
 }
 
 // ========== INICIALIZAÇÃO ==========
@@ -266,8 +283,11 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         product.classList.remove("added")
       }, 300)
+      
 
       updateOrder()
+
+      showToast(translations[currentLang].added_to_cart || 'Item adicionado!');
     })
   })
 
@@ -518,6 +538,20 @@ function updateOrder() {
 
   document.getElementById("orderTotal").innerText = total.toFixed(2);
 
+  // Atualiza o preview do carrinho
+
+  const preview = document.getElementById('cartItemsPreview');
+if (preview) {
+  preview.innerHTML = '';
+  orderList.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'preview-item';
+    div.innerHTML = `<span>${item.qty}x ${item.name} (${item.size})</span><span>€${(item.price * item.qty).toFixed(2)}</span>`;
+    preview.appendChild(div);
+  });
+  document.getElementById('dropdownTotal').innerText = total.toFixed(2);
+}
+
   // --- Atualiza o novo carrinho flutuante ---
   const cartBadge = document.getElementById('cartCountBadge');
   const cartSub = document.getElementById('cartSubtotalFloating');
@@ -545,4 +579,14 @@ function updateOrder() {
 function removeItem(index) {
   orderList.splice(index, 1)
   updateOrder()
+}
+
+// TOAST MESSAGE (função para mostrar mensagens temporárias)
+function showToast(text) {
+  const toast = document.getElementById('toastMessage');
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2000);
 }
