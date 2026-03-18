@@ -61,6 +61,8 @@ const translations = {
     desc_bisteca: "Vegan coxinha filled with palm heart.",
     add_button: "Add",
     quick_kits: "Quick Kits",
+    50: "📦 Party Kit 50 units",
+    100: "Party Kit 100 units",
     selected_items: "Selected items",
     subtotal: "Subtotal",
     form_note: "By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site."
@@ -116,6 +118,8 @@ const translations = {
     desc_bisteca: "Coxinha vegana recheada com palmito.",
     add_button: "Adicionar",
     quick_kits: "Kits Rápidos",
+    50: "📦 Kit Festa 50 unidades",
+    100: "📦 Kit Festa 100 unidades",
     selected_items: "Itens selecionados",
     subtotal: "Subtotal",
     form_note: "Ao clicar, você será redirecionado para o WhatsApp com a mensagem pré-preenchida. Nenhum dado é armazenado neste site."
@@ -171,6 +175,8 @@ const translations = {
     desc_bisteca: "Coxinha vegana rellena de palmito.",
     add_button: "Añadir",
     quick_kits: "Kits Rápidos",
+    50: "📦 Kit Fiesta 50 unidades",
+    100: "📦 Kit Fiesta 100 unidades",
     selected_items: "Artículos seleccionados",
     subtotal: "Subtotal",
     form_note: "Al hacer clic, serás redirigido a WhatsApp con el mensaje prellenado. No se almacenan datos en este sitio."
@@ -307,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const details = document.getElementById('details').value.trim();
 
     if (!name || !address || !phone || !details) {
-      alert('Por favor, preencha todos os campos do formulário.');
+      alert('Please fill in all the fields on the form.\nPor favor, preencha todos os campos do formulário.\nPor favor, rellene todos los campos del formulario.');
       return;
     }
 
