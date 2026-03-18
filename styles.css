@@ -213,7 +213,7 @@ body {
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 2 colunas no mobile */
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas no mobile */
   gap: 12px;
   margin-bottom: 18px;
 }
@@ -586,4 +586,75 @@ a:focus, button:focus, input:focus, textarea:focus {
     display: none;
   }
   
+}
+
+/* TESTES */
+
+/* Carrinho flutuante estilo ícone */
+.cart-floating {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* ou right: 20px, se preferir */
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 6px 12px 6px 6px;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cart-floating:hover {
+  transform: scale(1.05);
+}
+
+.cart-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #eedf0d; /* vermelho do seu tema */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.cart-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #3bff6c; /* laranja/amarelo */
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.cart-subtotal {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Se quiser que o carrinho apareça apenas em mobile, descomente a media query abaixo */
+@media (min-width: 768px) {
+  .cart-floating {
+    /*display: none;*/ /* Esconde o carrinho flutuante em telas maiores */ 
+  }
 }

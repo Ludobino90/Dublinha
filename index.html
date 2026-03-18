@@ -356,12 +356,13 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="script.js"></script>
-  <div class="mobile-cart">
-    <div class="cart-info">
-      <span id="cartCount">0 items</span>
-      <span id="cartSubtotal">€0.00</span>
-    </div>
-    <button id="viewCartBtn">View Order</button>
+  <!-- Ícone do carrinho flutuante com contador e subtotal -->
+<div id="cartFloating" class="cart-floating">
+  <div class="cart-icon">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cartCountBadge" class="cart-badge">0</span>
   </div>
+  <span id="cartSubtotalFloating" class="cart-subtotal">€0.00</span>
+</div>
 </body>
 </html>

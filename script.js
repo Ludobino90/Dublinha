@@ -283,9 +283,16 @@ document.addEventListener('DOMContentLoaded', function() {
       updateOrder()
     })
   })
+    // Clique no carrinho flutuante leva ao formulário
+  const cartFloating = document.getElementById('cartFloating');
+  if (cartFloating) {
+    cartFloating.addEventListener('click', function() {
+      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 
   // ========== MINI CART ==========
-  const viewCartBtn = document.getElementById("viewCartBtn")
+    const viewCartBtn = document.getElementById("viewCartBtn")
   if (viewCartBtn) {
     viewCartBtn.addEventListener("click", function() {
       document.getElementById("contato").scrollIntoView({ behavior: "smooth" })
@@ -486,36 +493,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ========== ATUALIZAR PEDIDO ==========
 function updateOrder() {
-  const container = document.getElementById("orderItems")
-  container.innerHTML = ""
-  total = 0
+  const container = document.getElementById("orderItems");
+  container.innerHTML = "";
+  total = 0;
 
   orderList.forEach((item, index) => {
-    const subtotal = item.price * item.qty
-    total += subtotal
+    const subtotal = item.price * item.qty;
+    total += subtotal;
 
-    const token = document.createElement("div")
-    token.className = "token"
+    const token = document.createElement("div");
+    token.className = "token";
     token.innerHTML = `
       <strong>${item.qty}x</strong> ${item.name} ${item.size} €${subtotal.toFixed(2)}
       <button onclick="removeItem(${index})">x</button>
-    `
-    container.appendChild(token)
-  })
+    `;
+    container.appendChild(token);
+  });
 
-  document.getElementById("orderTotal").innerText = total.toFixed(2)
+  document.getElementById("orderTotal").innerText = total.toFixed(2);
 
-  const cartCount = document.getElementById("cartCount")
-  const cartSubtotal = document.getElementById("cartSubtotal")
-
-  if (cartCount) {
-    let count = 0
-    orderList.forEach(i => count += i.qty)
-    cartCount.innerText = count + " items"
+  // --- Atualiza o novo carrinho flutuante ---
+  const cartBadge = document.getElementById('cartCountBadge');
+  const cartSub = document.getElementById('cartSubtotalFloating');
+  if (cartBadge) {
+    let totalItems = orderList.reduce((acc, item) => acc + item.qty, 0);
+    cartBadge.innerText = totalItems;
+  }
+  if (cartSub) {
+    cartSub.innerText = '€' + total.toFixed(2);
   }
 
-  if (cartSubtotal) {
-    cartSubtotal.innerText = "€" + total.toFixed(2)
+  // --- (Opcional) Atualiza elementos antigos, caso ainda existam ---
+  const oldCartCount = document.getElementById("cartCount");
+  const oldCartSubtotal = document.getElementById("cartSubtotal");
+  if (oldCartCount) {
+    let count = orderList.reduce((acc, item) => acc + item.qty, 0);
+    oldCartCount.innerText = count + " items";
+  }
+  if (oldCartSubtotal) {
+    oldCartSubtotal.innerText = "€" + total.toFixed(2);
   }
 }
 
