@@ -34,11 +34,11 @@
         </div>
       </div>
 
-      <div class="language-selector">
-        <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
-        <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
-        <button onclick="setLanguage('es')" id="lang-es">ES</button>
-      </div>
+        <div class="language-selector">
+          <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
+          <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
+          <button onclick="setLanguage('es')" id="lang-es">ES</button>
+        </div>
 
       <!-- Navegação (desktop) -->
       <nav class="main-nav" aria-label="Menu principal">
@@ -116,17 +116,18 @@
       <p class="note" data-i18n="order_note">Prices may vary according to quantity and promotions. Check via WhatsApp.</p>
 
       <div class="product-grid">
+
         <!-- FRANGO CREMOSO -->
-        <article class="product" data-product="Frango Cremoso">
+        <article class="product" data-product="Frango Cremoso" data-product-key="prod_frango_cremoso">
           <div class="badge-best">⭐ Best Seller</div>
           <img src="images/frango-cremoso.jpg" class="product-img">
           <h3 data-i18n="prod_frango_cremoso">Frango Cremoso</h3>
           <p class="desc" data-i18n="desc_frango_cremoso">Coxinha tradicional com frango cremoso temperado.</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="2.50">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="4.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="6.00">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.50">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.00">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.00">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">2.50</span></p>
@@ -141,15 +142,15 @@
         </article>
 
         <!-- QUEIJO -->
-        <article class="product" data-product="Queijo">
+        <article class="product" data-product="Queijo" data-product-key="prod_queijo">
           <img src="images/queijo.jpg" class="product-img">
           <h3 data-i18n="prod_queijo">Queijo</h3>
           <p class="desc" data-i18n="desc_queijo">Coxinha recheada com queijo derretido. HMMMMMMM</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="2.70">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="4.20">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="6.30">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.70">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.20">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.30">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">2.70</span></p>
@@ -164,15 +165,15 @@
         </article>
 
         <!-- CALABRESA -->
-        <article class="product" data-product="Calabresa">
+        <article class="product" data-product="Calabresa" data-product-key="prod_calabresa">
           <img src="images/calabreza.jpg" class="product-img">
           <h3 data-i18n="prod_calabresa">Calabresa</h3>
           <p class="desc" data-i18n="desc_calabresa">Coxinha com recheio de calabresa temperada.</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="2.80">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="4.30">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="6.40">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.80">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.30">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.40">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">2.80</span></p>
@@ -187,15 +188,15 @@
         </article>
 
         <!-- FRANGO + QUEIJO -->
-        <article class="product" data-product="Frango com Queijo">
+        <article class="product" data-product="Frango com Queijo" data-product-key="prod_frango_queijo">
           <img src="images/frango.jpg" class="product-img">
           <h3 data-i18n="prod_frango_queijo">Frango com Queijo</h3>
           <p class="desc" data-i18n="desc_frango_queijo">Coxinha de frango com queijo cremoso.</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="3.20">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="5.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="7.00">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.20">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="5.00">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="7.00">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">3.20</span></p>
@@ -210,15 +211,15 @@
         </article>
 
         <!-- COSTELA -->
-        <article class="product" data-product="Costela">
+        <article class="product" data-product="Costela" data-product-key="prod_costela">
           <img src="images/costela.jpg" class="product-img">
           <h3 data-i18n="prod_costela">Costela</h3>
           <p class="desc" data-i18n="desc_costela">Coxinha recheada com costela desfiada.</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="3.20">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="5.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="7.00">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.20">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="5.00">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="7.00">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">3.20</span></p>
@@ -233,15 +234,15 @@
         </article>
 
         <!-- VEGANA (Bisteca) -->
-        <article class="product" data-product="Vegana">
+        <article class="product" data-product="Vegana" data-product-key="prod_bisteca">
           <img src="images/bisteca.jpg" class="product-img">
           <h3 data-i18n="prod_bisteca">Bisteca</h3>
           <p class="desc" data-i18n="desc_bisteca">Coxinha vegana recheada com palmito.</p>
 
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-price="3.00">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-price="4.80">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-price="6.80">100g</button>
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.00">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.80">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.80">100g</button>
           </div>
 
           <p class="price">€ <span class="price-value">3.00</span></p>
@@ -254,6 +255,7 @@
 
           <button class="add-item" data-i18n="add_button">Adicionar</button>
         </article>
+
       </div>
 
       <div class="kits-area">
@@ -318,33 +320,10 @@
     </section>
   </main>
 
-  <!-- WHATSAPP FLUTUANTE -->
+  <!-- WHATSAPP FLUTUANTE (link corrigido e arrastável) -->
   <a href="https://wa.me/353832023836" id="whatsappFloating" class="whatsapp-floating" aria-label="Contato WhatsApp" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
-
-  <!-- CARRINHO FLUTUANTE COM DROPDOWN -->
-  <div id="cartFloating" class="cart-floating">
-    <div id="cartDropdown" class="cart-dropdown">
-      <div class="dropdown-header">
-        <span>Seus itens</span>
-        <button id="closeCartDropdown" class="close-dropdown">✕</button>
-      </div>
-      <div id="cartItemsPreview" class="cart-items-preview"></div>
-      <div class="dropdown-footer">
-        <span>Total: €<span id="dropdownTotal">0.00</span></span>
-        <button id="goToOrderForm" class="dropdown-checkout">Ver pedido</button>
-      </div>
-    </div>
-    <div class="cart-icon">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span id="cartCountBadge" class="cart-badge">0</span>
-    </div>
-    <span id="cartSubtotalFloating" class="cart-subtotal">€0.00</span>
-  </div>
-
-  <!-- TOAST MESSAGE -->
-  <div id="toastMessage" class="toast-message"></div>
 
   <!-- RODAPÉ -->
   <footer class="site-footer">
@@ -377,5 +356,29 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="script.js"></script>
+  <!-- Ícone do carrinho flutuante com contador e subtotal -->
+  <div id="cartFloating" class="cart-floating">
+    <div id="cartDropdown" class="cart-dropdown">
+      <div class="dropdown-header">
+        <span data-i18n="cart_items_title">Seus itens</span>
+        <button id="closeCartDropdown" class="close-dropdown">✕</button>
+      </div>
+
+      <div id="cartItemsPreview" class="cart-items-preview"></div>
+
+      <div class="dropdown-footer">
+        <span><span data-i18n="total_label">Total</span>: €<span id="dropdownTotal">0.00</span></span>
+        <button data-i18n="view_order">Ver pedido</button>
+      </div>
+    </div>
+
+    <div class="cart-icon">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cartCountBadge" class="cart-badge">0</span>
+    </div>
+    <span id="cartSubtotalFloating" class="cart-subtotal">€0.00</span>
+  </div>
+
+  <div id="toastMessage" class="toast-message"></div>
 </body>
 </html>

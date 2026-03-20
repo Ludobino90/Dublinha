@@ -25,6 +25,13 @@ const translations = {
     slide4_desc: "Build your combo and get a discount for large quantities.",
     order_title: "Place your order",
     order_note: "Prices may vary according to quantity and promotions. Check via WhatsApp.",
+    how_coxinhas_desc: "All made with special potato dough – soft inside, crispy outside!",
+    how_fried_option_title: "🔥 Fried option:",
+    how_fried_option_desc: "Additional €0.50 for every 5 coxinhas.",
+    how_kit_exception: "50 and 100 unit Kits: no extra fee (regular price).",
+    how_frozen_option_title: "❄️ Frozen option:",
+    how_frozen_option_desc: "No extra fee – you take raw frozen coxinhas and fry at home.",
+    how_delivery_compact_v2: "Delivery fee: €3 to €5, depending on location. We arrange time via WhatsApp the day before. Possible meeting point.",
     contact_title: "Order via WhatsApp",
     label_name: "Full name",
     label_address: "Address",
@@ -59,6 +66,16 @@ const translations = {
     desc_costela: "Coxinha filled with shredded ribs.",
     prod_bisteca: "Bisteca",
     desc_bisteca: "Vegan coxinha filled with palm heart.",
+    kit_name: "Coxinha Kit",
+    // Tamanhos
+    size_small: "Small (30g)",
+    size_medium: "Medium (60g)",
+    size_large: "Large (100g)",
+    size_mix: "Mix",
+    // Dropdown do carrinho
+    cart_items_title: "Your items",
+    total_label: "Total",
+    view_order: "View order",
     add_button: "Add",
     quick_kits: "Quick Kits",
     50: "📦 Party Kit 50 units",
@@ -83,6 +100,13 @@ const translations = {
     slide4_desc: "Monte o seu combo e garanta desconto para grandes quantidades.",
     order_title: "Faça seu pedido",
     order_note: "Os preços podem variar conforme quantidade e promoções. Consulte no WhatsApp.",
+    how_coxinhas_desc: "Todas com massa especial de batata – macias por dentro, crocantes por fora!",
+    how_fried_option_title: "🔥 Opção Frita:",
+    how_fried_option_desc: "Acréscimo de €0,50 a cada 5 coxinhas.",
+    how_kit_exception: "Kits de 50 e 100 unidades: não pagam esse acréscimo (valor normal).",
+    how_frozen_option_title: "❄️ Opção Congelada:",
+    how_frozen_option_desc: "Sem acréscimo – leva as coxinhas cruas congeladas e frita quando quiser.",
+    how_delivery_compact_v2: "Taxa de entrega: €3 a €5, conforme localidade. Combinamos horário pelo WhatsApp no dia anterior. Pode ser ponto de encontro.",    
     contact_title: "Pedido via WhatsApp",
     label_name: "Nome completo",
     label_address: "Endereço",
@@ -117,6 +141,16 @@ const translations = {
     desc_costela: "Coxinha recheada com costela desfiada.",
     prod_bisteca: "Bisteca",
     desc_bisteca: "Coxinha vegana recheada com palmito.",
+    kit_name: "Coxinha Kit",
+    // Tamanhos
+    size_small: "Pequena (30g)",
+    size_medium: "Média (60g)",
+    size_large: "Grande (100g)",
+    size_mix: "Misto",
+    // Dropdown do carrinho
+    cart_items_title: "Seus itens",
+    total_label: "Total",
+    view_order: "Ver pedido",
     add_button: "Adicionar",
     quick_kits: "Kits Rápidos",
     50: "📦 Kit Festa 50 unidades",
@@ -141,6 +175,13 @@ const translations = {
     slide4_desc: "Arma tu combo y obtén descuento por grandes cantidades.",
     order_title: "Haz tu pedido",
     order_note: "Los precios pueden variar según cantidad y promociones. Consulta por WhatsApp.",
+    how_coxinhas_desc: "Todas con masa especial de papa – ¡suaves por dentro, crujientes por fuera!",
+    how_fried_option_title: "🔥 Opción Frita:",
+    how_fried_option_desc: "Recargo de €0,50 por cada 5 coxinhas.",
+    how_kit_exception: "Kits de 50 y 100 unidades: no pagan este recargo (precio normal).",
+    how_frozen_option_title: "❄️ Opción Congelada:",
+    how_frozen_option_desc: "Sin recargo – llevas las coxinhas crudas congeladas y las fríes en casa.",
+    how_delivery_compact_v2: "Tarifa de entrega: €3 a €5, según ubicación. Coordinamos horario por WhatsApp el día anterior. Posible punto de encuentro.",
     contact_title: "Pedido por WhatsApp",
     label_name: "Nombre completo",
     label_address: "Dirección",
@@ -175,6 +216,16 @@ const translations = {
     desc_costela: "Coxinha rellena de costilla desmenuzada.",
     prod_bisteca: "Bisteca",
     desc_bisteca: "Coxinha vegana rellena de palmito.",
+    kit_name: "Kit de Coxinhas",
+    // Tamaños
+    size_small: "Pequeña (30g)",
+    size_medium: "Mediana (60g)",
+    size_large: "Grande (100g)",
+    size_mix: "Mixto",
+    // Dropdown del carrito
+    cart_items_title: "Tus artículos",
+    total_label: "Total",
+    view_order: "Ver pedido",
     add_button: "Añadir",
     quick_kits: "Kits Rápidos",
     50: "📦 Kit Fiesta 50 unidades",
@@ -207,6 +258,9 @@ function setLanguage(lang) {
 
   document.getElementById("lang-" + lang)?.classList.add("active")
   document.getElementById("mobile-lang-" + lang)?.classList.add("active")
+
+  // Atualiza os nomes dos produtos no token e dropdown
+  updateOrder();
 }
 
 // ========== FUNÇÃO DE TOAST ==========
@@ -230,10 +284,15 @@ function updateOrder() {
     const subtotal = item.price * item.qty;
     total += subtotal;
 
+    // Obtém o nome traduzido do produto
+    const productName = translations[currentLang][item.productKey] || item.productKey;
+    // Obtém o nome traduzido do tamanho
+    const sizeName = translations[currentLang][item.sizeKey] || item.sizeKey;
+
     const token = document.createElement("div");
     token.className = "token";
     token.innerHTML = `
-      <strong>${item.qty}x</strong> ${item.name} ${item.size} €${subtotal.toFixed(2)}
+      <strong>${item.qty}x</strong> ${productName} (${sizeName}) €${subtotal.toFixed(2)}
       <button onclick="removeItem(${index})">x</button>
     `;
     container.appendChild(token);
@@ -246,9 +305,11 @@ function updateOrder() {
   if (preview) {
     preview.innerHTML = '';
     orderList.forEach(item => {
+      const productName = translations[currentLang][item.productKey] || item.productKey;
+      const sizeName = translations[currentLang][item.sizeKey] || item.sizeKey;
       const div = document.createElement('div');
       div.className = 'preview-item';
-      div.innerHTML = `<span>${item.qty}x ${item.name} (${item.size})</span><span>€${(item.price * item.qty).toFixed(2)}</span>`;
+      div.innerHTML = `<span>${item.qty}x ${productName} (${sizeName})</span><span>€${(item.price * item.qty).toFixed(2)}</span>`;
       preview.appendChild(div);
     });
     document.getElementById('dropdownTotal').innerText = total.toFixed(2);
@@ -330,17 +391,17 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll(".add-item").forEach(btn => {
     btn.addEventListener("click", function() {
       const product = this.closest(".product")
-      const name = product.dataset.product
+      const productKey = product.dataset.productKey; // chave do produto
       const activeSize = product.querySelector(".size-btn.active")
-      const size = activeSize.dataset.size
+      const sizeKey = activeSize.dataset.sizeKey; // chave do tamanho
       const price = parseFloat(activeSize.dataset.price)
       const qty = parseInt(product.querySelector(".qty").innerText)
 
-      const existing = orderList.find(item => item.name === name && item.size === size)
+      const existing = orderList.find(item => item.productKey === productKey && item.sizeKey === sizeKey)
       if (existing) {
         existing.qty += qty
       } else {
-        orderList.push({ name, size, price, qty })
+        orderList.push({ productKey, sizeKey, price, qty })
       }
 
       product.classList.add("added")
@@ -357,13 +418,15 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll(".kit-btn").forEach(btn => {
     btn.addEventListener("click", function() {
       const kit = parseInt(this.dataset.kit)
-      const existing = orderList.find(item => item.name === "Coxinha Kit")
+      const productKey = "kit_name"; // chave do kit
+      const kitSizeKey = "size_mix"; // usei nome diferente para evitar conflito
+      const existing = orderList.find(item => item.productKey === productKey && item.sizeKey === kitSizeKey)
       if (existing) {
         existing.qty += kit
       } else {
         orderList.push({
-          name: "Coxinha Kit",
-          size: "Mix",
+          productKey: productKey,
+          sizeKey: kitSizeKey,
           price: 2.20,
           qty: kit
         })
@@ -377,37 +440,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const cartFloating = document.getElementById('cartFloating');
   const cartDropdown = document.getElementById('cartDropdown');
   const closeDropdown = document.getElementById('closeCartDropdown');
-  const goToOrderBtn = document.getElementById('goToOrderForm');
+  const goToOrderButton = document.querySelector('.dropdown-footer button');
 
   if (cartFloating && cartDropdown) {
-    // Abrir/fechar dropdown ao clicar no ícone (impedir que o clique no dropdown feche)
+    // Abrir/fechar dropdown ao clicar no ícone
     cartFloating.addEventListener('click', function(e) {
-      // Se clicou no botão de fechar ou no botão "Ver pedido", não altera o dropdown (eles têm seus próprios eventos)
-      if (e.target.closest('.close-dropdown') || e.target.closest('.dropdown-checkout')) {
+      // Se clicou no botão de fechar ou no botão "Ver pedido", não altera o dropdown
+      if (e.target.closest('.close-dropdown') || e.target.closest('.dropdown-footer button')) {
         return;
       }
-      // Se clicou no ícone ou área do carrinho (exceto dropdown), alterna
+      // Alterna a exibição do dropdown
       cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
     });
 
     // Fechar dropdown ao clicar no X
     if (closeDropdown) {
       closeDropdown.addEventListener('click', function(e) {
-        e.stopPropagation(); // Evita que o clique chegue no cartFloating
+        e.stopPropagation();
         cartDropdown.style.display = 'none';
       });
     }
 
     // Botão "Ver pedido" dentro do dropdown rola até o formulário e fecha dropdown
-    if (goToOrderBtn) {
-      goToOrderBtn.addEventListener('click', function(e) {
+    if (goToOrderButton) {
+      goToOrderButton.addEventListener('click', function(e) {
         e.stopPropagation();
         document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
         cartDropdown.style.display = 'none';
       });
     }
 
-    // Fechar dropdown ao clicar fora dele (opcional, boa prática)
+    // Fechar dropdown ao clicar fora dele
     document.addEventListener('click', function(e) {
       if (!cartFloating.contains(e.target)) {
         cartDropdown.style.display = 'none';
@@ -440,7 +503,9 @@ document.addEventListener('DOMContentLoaded', function() {
     message += `*Itens do pedido:*\n`;
 
     orderList.forEach(item => {
-      message += `- ${item.qty}x ${item.name} (${item.size}) - €${(item.price * item.qty).toFixed(2)}\n`;
+      const productName = translations[currentLang][item.productKey] || item.productKey;
+      const sizeName = translations[currentLang][item.sizeKey] || item.sizeKey;
+      message += `- ${item.qty}x ${productName} (${sizeName}) - €${(item.price * item.qty).toFixed(2)}\n`;
     });
 
     const total = orderList.reduce((acc, item) => acc + (item.price * item.qty), 0);
