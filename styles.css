@@ -47,7 +47,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 0;
+  padding: 0 15px;
 }
 .brand {
   display: flex;
@@ -60,14 +60,17 @@ body {
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid rgba(0,0,0,0.05);
+  
 }
 .brand-text h1 {
   color: #E63946;
   font-size: 1.4rem;
+  height: 15px;
+  
 }
 .tagline {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: var(--muted);
 }
 
@@ -161,27 +164,56 @@ body {
 }
 
 /* HERO / CARROSSEL */
+/* HERO / CARROSSEL - CORRIGIDO */
 .hero {
-  padding: 12px var(--container-padding) 28px;
+  padding: 0; /* REMOVE espaço em cima */
+  margin: 0;
 }
+
 .swiper {
   width: 100%;
-  border-radius: 16px;
+  height: 220px; /* altura fixa mobile */
+  border-radius: 0; /* remove borda que cria "respiro" visual */
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
+
+.swiper-wrapper {
+  height: 100%;
+}
+
 .swiper-slide {
   position: relative;
-  min-height: 220px;
+  height: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
-.swiper-slide img, .swiper-slide .slide-video {
+
+.swiper-slide img,
+.swiper-slide .slide-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+}
+
+/* DESKTOP */
+@media (min-width: 720px) {
+  .hero {
+    padding: 12px var(--container-padding) 28px;
+  }
+
+  .swiper {
+    height: 320px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+}
+
+@media (min-width: 1000px) {
+  .swiper {
+    height: 380px;
+  }
 }
 .slide-caption {
   position: absolute;
@@ -441,6 +473,7 @@ body {
 
 /* Desktop e tablets */
 @media (min-width: 720px) {
+  
   .main-nav {
     display: flex;
   }
