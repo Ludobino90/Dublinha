@@ -18,7 +18,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  background: linear-gradient(180deg, #fff 0%, #e8ffde 100%);
+  background: linear-gradient(180deg, #fff 0%, #ffffff 100%);
   color: #222;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -303,6 +303,89 @@ body {
   font-weight: 800;
   color: #2A9D8F;
   margin: 8px 0;
+}
+
+/*=====MELHORIA NO LAYOUT DOS PRODUTOS (ACRESCIMO)====*/
+
+/* CARD MAIS MODERNO */
+.product {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* IMAGEM MAIS PREMIUM */
+.product-img {
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* NOME MAIS LIMPO */
+.product h3 {
+  font-size: 1.05rem;
+  margin-top: 8px;
+}
+
+/* DESCRIÇÃO MAIS LEVE */
+.product .desc {
+  font-size: 0.85rem;
+  color: #6b6b6b;
+}
+
+/* PREÇO MUITO MAIS FORTE */
+.product .price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #E63946;
+  margin: 10px 0 6px;
+}
+
+/* BOTÃO MAIS CONVERSÃO */
+.add-item {
+  background: linear-gradient(135deg, #E63946, #ff6b6b);
+  font-size: 0.95rem;
+  padding: 12px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.add-item:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #c92f3b, #ff4d4d);
+}
+
+/* TAMANHOS MAIS MODERNOS */
+.size-btn {
+  font-size: 0.75rem;
+  padding: 6px 0;
+}
+
+.size-btn.active {
+  background: #2A9D8F;
+  border-color: #2A9D8F;
+}
+
+/* QUANTIDADE MAIS CLEAN */
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+}
+
+/* BADGE MAIS BONITA */
+.badge-best {
+  background: #ffb703;
+  font-size: 0.7rem;
+}
+
+/* HOVER MAIS SUAVE */
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(230, 57, 70, 0.18);
 }
 
 /* Formulário */
@@ -886,4 +969,6 @@ a:focus, button:focus, input:focus, textarea:focus {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+
 
