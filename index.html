@@ -108,6 +108,46 @@
       </div>
     </section>
 
+    <section class="info-clean container">
+
+  <div class="info-grid">
+
+    <!-- BLOCO 1 -->
+    <div class="info-card">
+      <h3 data-i18n="our_dough_1">🥔 Nossa massa</h3>
+      <p data-i18n="our_dough_1_desc">
+        Feita com batata e farinha, leve por dentro e crocante por fora.
+      </p>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="info-card">
+      <h3 data-i18n="party_kits">🎉 Kits festa</h3>
+      <p data-i18n="party_kits_desc">
+        Coxinhas de 30g perfeitas para eventos. Misture os sabores como quiser.
+      </p>
+    </div>
+
+    <!-- BLOCO 3 -->
+    <div class="info-card">
+      <h3 data-i18n="delivery">🚚 Entrega</h3>
+      <p data-i18n="delivery_desc">
+        Retirada no centro de Dublin ou entrega no seu endereço. Primeiro delivery grátis.
+      </p>
+    </div>
+
+    <!-- BLOCO 4 -->
+    <div class="info-card">
+      <h3 data-i18n="how_it_works">⏱️ Como funciona</h3>
+      <p data-i18n="how_it_works_desc">
+        Produzimos no dia e entregamos no dia seguinte. Frescas e congeladas para manter o sabor.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
     <!-- ======================
          ENCOMENDAS
          ====================== -->
@@ -145,7 +185,7 @@
         <article class="product" data-product="Queijo" data-product-key="prod_queijo">
           <img src="images/queijo.jpg" class="product-img">
           <h3 data-i18n="prod_queijo">Queijo</h3>
-          <p class="desc" data-i18n="desc_queijo">Coxinha recheada com queijo derretido. HMMMMMMM</p>
+          <p class="desc" data-i18n="desc_queijo">Coxinha recheada com queijo. HMMMMMMM</p>
 
           <div class="size-selector">
             <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.70">30g</button>
@@ -164,11 +204,34 @@
           <button class="add-item" data-i18n="add_button">Adicionar</button>
         </article>
 
+         <!-- CARNE+TOMATE -->
+        <article class="product" data-product="Carne" data-product-key="prod_carne">
+          <img src="images/carne.jpg" class="product-img">
+          <h3 data-i18n="prod_carne">Carne com Tomate</h3>
+          <p class="desc" data-i18n="desc_carne">Coxinha recheada com carne e tomate.</p>
+
+          <div class="size-selector">
+            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.50">30g</button>
+            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.00">60g</button>
+            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.00">100g</button>
+          </div>
+
+          <p class="price">€ <span class="price-value">2.50</span></p>
+
+          <div class="qty-control">
+            <button class="qty-btn minus">-</button>
+            <span class="qty">1</span>
+            <button class="qty-btn plus">+</button>
+          </div>
+
+          <button class="add-item" data-i18n="add_button">Adicionar</button>
+        </article>
+
         <!-- CALABRESA -->
         <article class="product" data-product="Calabresa" data-product-key="prod_calabresa">
           <img src="images/calabreza.jpg" class="product-img">
           <h3 data-i18n="prod_calabresa">Calabresa</h3>
-          <p class="desc" data-i18n="desc_calabresa">Coxinha com recheio de calabresa temperada.</p>
+          <p class="desc" data-i18n="desc_calabresa">Coxinha com recheio de calabresa defumada.</p>
 
           <div class="size-selector">
             <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.80">30g</button>
@@ -191,7 +254,7 @@
         <article class="product" data-product="Frango com Queijo" data-product-key="prod_frango_queijo">
           <img src="images/frango.jpg" class="product-img">
           <h3 data-i18n="prod_frango_queijo">Frango com Queijo</h3>
-          <p class="desc" data-i18n="desc_frango_queijo">Coxinha de frango com queijo cremoso.</p>
+          <p class="desc" data-i18n="desc_frango_queijo">Coxinha de frango com queijo.</p>
 
           <div class="size-selector">
             <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.20">30g</button>
@@ -233,11 +296,11 @@
           <button class="add-item" data-i18n="add_button">Adicionar</button>
         </article>
 
-        <!-- VEGANA (Bisteca) -->
-        <article class="product" data-product="Vegana" data-product-key="prod_bisteca">
+        <!-- BISTECA -->
+        <article class="product" data-product="Bisteca" data-product-key="prod_bisteca">
           <img src="images/bisteca.jpg" class="product-img">
           <h3 data-i18n="prod_bisteca">Bisteca</h3>
-          <p class="desc" data-i18n="desc_bisteca">Coxinha vegana recheada com palmito.</p>
+          <p class="desc" data-i18n="desc_bisteca">Coxinha recheada com Bisteca desfiada.</p>
 
           <div class="size-selector">
             <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.00">30g</button>
@@ -338,7 +401,8 @@
       <div>
         <h4 data-i18n="address_hours">Address & Hours</h4>
         <p data-i18n="address">Dublin Areas</p>
-        <p data-i18n="hours">Mon–Sat: 08:00 — 19:00</p>
+        <p data-i18n="hours">ORDERS: Mondays – Wednesdays - Fridays: 08:00 — 14:00</p>
+        <p data-i18n="hours2">DELIVERY: Tuesdays – Thursdays - Saturdays: 08:00 — 14:00</p>
       </div>
       <div>
         <h4 data-i18n="contact">Contact</h4>

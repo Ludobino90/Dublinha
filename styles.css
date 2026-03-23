@@ -18,7 +18,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  background: linear-gradient(180deg, #fff 0%, #fff7f1 100%);
+  background: linear-gradient(180deg, #fff 0%, #e8ffde 100%);
   color: #222;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -840,3 +840,50 @@ a:focus, button:focus, input:focus, textarea:focus {
 .toast-message.show {
   opacity: 1;
 }
+
+/* INFO CLEAN (NOVA SEÇÃO) */
+.info-clean {
+  margin-top: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid #f1f3f5;
+  transition: all 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.12);
+  border-color: #E63946;
+}
+
+.info-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: #E63946;
+}
+
+.info-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* DESKTOP */
+@media (min-width: 720px) {
+  .info-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
