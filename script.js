@@ -396,7 +396,8 @@ function updateOrder() {
           <strong>${item.qty}x</strong> ${productName} (${sizeName})<br>
           <small>€${(item.price * item.qty).toFixed(2)}</small>
         </span>
-        <button class="preview-item-remove" onclick="removeItemFromDropdown(${index})" title="Remover">✕</button>
+        
+<button class="preview-item-remove" onclick="removeItemFromDropdown(event, ${index})" title="Remover">✕</button>
       `;
       preview.appendChild(div);
     });
@@ -422,8 +423,16 @@ function removeItem(index) {
 }
 
 // ========== REMOVER ITEM DO DROPDOWN DO CARRINHO ==========
-function removeItemFromDropdown(index) {
+function removeItemFromDropdown(e, index) {
+  // Se o evento existir, impede que ele "suba" e feche o carrinho
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  }
+
+  // Remove o item da lista
   orderList.splice(index, 1);
+  
+  // Atualiza o pedido/interface
   updateOrder();
 }
 
@@ -761,7 +770,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function endDrag() { isDragging = false; }
 
-    cartFloating.addEventListener('touchstart', e => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
+    cartFloating.addEventListener('touchstart', e => { 
+  startDrag(e.touches[0].clientX, e.touches[0].clientY); 
+}, { passive: true });
     cartFloating.addEventListener('touchmove',  e => { e.preventDefault(); onDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
     cartFloating.addEventListener('touchend', endDrag);
     cartFloating.addEventListener('touchcancel', endDrag);
@@ -852,7 +863,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function endDrag() { isDragging = false; }
 
-    whatsappBtn.addEventListener('touchstart', e => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
+    whatsappBtn.addEventListener('touchstart', e => { 
+  startDrag(e.touches[0].clientX, e.touches[0].clientY); 
+}, { passive: true });
     whatsappBtn.addEventListener('touchmove',  e => { e.preventDefault(); onDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
     whatsappBtn.addEventListener('touchend', endDrag);
     whatsappBtn.addEventListener('touchcancel', endDrag);
