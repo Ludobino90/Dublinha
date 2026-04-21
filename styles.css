@@ -596,10 +596,12 @@ body {
 .cart-subtotal { color: #E63946; font-weight: 700; font-size: 0.9rem; }
 
 /* ======================== DROPDOWN DO CARRINHO ======================== */
+
 .cart-dropdown {
   position: absolute; bottom: 60px; left: 0; background: white;
   border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   width: 310px; padding: 12px; display: none; z-index: 10001;
+  overscroll-behavior: contain;
 }
 .cart-dropdown .dropdown-header {
   display: flex; justify-content: space-between; align-items: center;
@@ -608,7 +610,7 @@ body {
 .close-dropdown { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #666; }
 .close-dropdown:hover { color: #E63946; }
 
-.cart-items-preview { max-height: 260px; overflow-y: auto; margin-bottom: 8px; }
+.cart-items-preview { max-height: 260px; overflow-y: auto; margin-bottom: 8px; overscroll-behavior: contain; }
 
 /* Item do dropdown com foto */
 .preview-item {

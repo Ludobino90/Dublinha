@@ -609,6 +609,13 @@ document.addEventListener('DOMContentLoaded', function () {
       const c = clamp(parseFloat(cartFloating.style.left) || 0, parseFloat(cartFloating.style.top) || 0)
       cartFloating.style.left = c.left + 'px'; cartFloating.style.top = c.top + 'px'
     })
+    function isInsideScrollableArea(target) {
+  return target.closest('.cart-items-preview, .cart-dropdown, .preview-item')
+}
+
+function isDragHandle(target) {
+  return target.closest('#cartFloating')
+}
 
     function startDrag(cx, cy) {
       isDragging = true; hasMoved = false
@@ -626,6 +633,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cartFloating.addEventListener('touchstart', e => {
   if (isInsideScrollableArea(e.target)) return
+  if (!isDragHandle(e.target)) return
+
   startDrag(e.touches[0].clientX, e.touches[0].clientY)
 }, { passive: true })
 
