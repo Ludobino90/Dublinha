@@ -80,6 +80,17 @@ const translations = {
     kit_massa_pastel_name: "🥟 Pastel Dough",
     kit_massa_pastel_desc: "Fresh artisanal pastel dough, ready to fry at home. Crispy, light and authentic. Pack of 500g.",
     kit_brigadeiro: "Brigadeiro Kit", kit_beijinho: "Beijinho Kit", kit_massa_pastel: "Pastel Dough",
+    // Kits Festa (Mini, Médio, Grande)
+    kit_mini_name: "🥇 MINI PARTY KIT (8–12 people)",
+    kit_mini_desc: "50 mini coxinhas + 20 brigadeiros + 20 beijinhos",
+    kit_medium_name: "🥈 MEDIUM PARTY KIT (15–25 people)",
+    kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
+    kit_large_name: "🥉 LARGE PARTY KIT (30–50 people)",
+    kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
+
+    // Cookie banner
+    cookie_text: "🍪 This site uses cookies only for essential functionality (cart, language). No tracking data is collected.",
+    cookie_accept: "Accept",
     // Geral
     size_small: "Small (30g)", size_medium: "Medium (60g)", size_large: "Large (100g)", size_mix: "Mix",
     cart_items_title: "Your items", total_label: "Total", view_order: "View order",
@@ -156,6 +167,15 @@ const translations = {
     kit_massa_pastel_name: "🥟 Massa de Pastel",
     kit_massa_pastel_desc: "Massa artesanal fresca para pastel, pronta para fritar em casa. Crocante, sequinha e com o sabor autêntico. Pacote com 500g.",
     kit_brigadeiro: "Kit Brigadeiro", kit_beijinho: "Kit Beijinho", kit_massa_pastel: "Massa de Pastel",
+     kit_mini_name: "🥇 KIT FESTA MINI (8–12 pessoas)",
+    kit_mini_desc: "50 mini coxinhas + 20 brigadeiros + 20 beijinhos",
+    kit_medium_name: "🥈 KIT FESTA MÉDIO (15–25 pessoas)",
+    kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
+    kit_large_name: "🥉 KIT FESTA GRANDE (30–50 pessoas)",
+    kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
+
+    cookie_text: "🍪 Este site utiliza cookies apenas para funcionalidades essenciais (carrinho, idioma). Nenhum dado de rastreamento é coletado.",
+    cookie_accept: "Aceitar",
     size_small: "Pequena (30g)", size_medium: "Média (60g)", size_large: "Grande (100g)", size_mix: "Misto",
     cart_items_title: "Seus itens", total_label: "Total", view_order: "Ver pedido",
     add_button: "Adicionar", selected_items: "Itens selecionados", subtotal: "Subtotal",
@@ -231,6 +251,15 @@ const translations = {
     kit_massa_pastel_name: "🥟 Masa de Pastel",
     kit_massa_pastel_desc: "Masa artesanal fresca para pastel, lista para freír en casa. Paquete de 500g.",
     kit_brigadeiro: "Kit Brigadeiro", kit_beijinho: "Kit Beijinho", kit_massa_pastel: "Masa de Pastel",
+    kit_mini_name: "🥇 KIT FIESTA MINI (8–12 personas)",
+    kit_mini_desc: "50 mini coxinhas + 20 brigadeiros + 20 beijinhos",
+    kit_medium_name: "🥈 KIT FIESTA MEDIANO (15–25 personas)",
+    kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
+    kit_large_name: "🥉 KIT FIESTA GRANDE (30–50 personas)",
+    kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
+
+    cookie_text: "🍪 Este sitio utiliza cookies solo para funcionalidades esenciales (carrito, idioma). No se recopilan datos de seguimiento.",
+    cookie_accept: "Aceptar",
     size_small: "Pequeña (30g)", size_medium: "Mediana (60g)", size_large: "Grande (100g)", size_mix: "Mixto",
     cart_items_title: "Tus artículos", total_label: "Total", view_order: "Ver pedido",
     add_button: "Añadir", selected_items: "Artículos seleccionados", subtotal: "Subtotal",
@@ -531,6 +560,23 @@ function initPrivacyModal() {
     if (e.target === modal) closeModal()
   })
 }
+  // ========== COOKIE BANNER ==========
+  const cookieBanner = document.getElementById('cookieBanner');
+  const acceptBtn = document.getElementById('acceptCookies');
+
+  function showCookieBanner() {
+    if (!localStorage.getItem('cookiesAccepted')) {
+      cookieBanner.style.display = 'block';
+    }
+  }
+
+  function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBanner.style.display = 'none';
+  }
+
+  if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
+  showCookieBanner();
 
 // ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function () {
@@ -644,7 +690,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // ========== CARRINHO FLUTUANTE - ARRASTAR ==========
+    // ========== CARRINHO FLUTUANTE - ARRASTAR (COM POSIÇÃO INICIAL CORRETA) ==========
   ;(function () {
     const cartFloating = document.getElementById('cartFloating')
     if (!cartFloating) return
@@ -653,40 +699,91 @@ document.addEventListener('DOMContentLoaded', function () {
     let startX, startY, startLeft, startTop
     const MOVE_THRESHOLD = 8
 
+    // Função para posicionar no canto inferior esquerdo (padrão)
+    function resetToDefaultPosition() {
+      cartFloating.style.left = '20px'
+      cartFloating.style.bottom = '20px'
+      cartFloating.style.top = 'auto'
+      cartFloating.style.right = 'auto'
+    }
+
     function clamp(left, top) {
       const w = cartFloating.offsetWidth, h = cartFloating.offsetHeight
-      return { left: Math.min(Math.max(left, 0), window.innerWidth - w), top: Math.min(Math.max(top, 0), window.innerHeight - h) }
+      // Impede que saia da tela
+      const maxLeft = window.innerWidth - w
+      const maxTop = window.innerHeight - h
+      return { left: Math.min(Math.max(left, 0), maxLeft), top: Math.min(Math.max(top, 0), maxTop) }
     }
+
+    function initPos() {
+      // Se o carrinho está visível e não tem posição definida, coloca no padrão
+      if (cartFloating.style.display === 'flex') {
+        const currentLeft = cartFloating.style.left
+        const currentTop = cartFloating.style.top
+        if (!currentLeft || currentLeft === 'auto') {
+          resetToDefaultPosition()
+        }
+      }
+    }
+
+    // Observa mudanças no display (quando o carrinho aparece)
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'style') {
+          if (cartFloating.style.display === 'flex') {
+            // Se acabou de ficar visível, reposiciona no canto inferior esquerdo
+            resetToDefaultPosition()
+          }
+        }
+      })
+    })
+    observer.observe(cartFloating, { attributes: true })
+
+    // Ajusta ao redimensionar a tela
+    window.addEventListener('resize', () => {
+      if (cartFloating.style.display === 'flex') {
+        const left = parseFloat(cartFloating.style.left)
+        const top = parseFloat(cartFloating.style.top)
+        if (!isNaN(left) && !isNaN(top)) {
+          const c = clamp(left, top)
+          cartFloating.style.left = c.left + 'px'
+          cartFloating.style.top = c.top + 'px'
+        } else {
+          resetToDefaultPosition()
+        }
+      }
+    })
+
     function isInsideScrollableArea(target) {
       return target.closest('.product-list, #cartDropdown, .preview-item, .dropdown-content')
     }
-    function initPos() {
-      const r = cartFloating.getBoundingClientRect()
-      const c = clamp(r.left, r.top)
-      cartFloating.style.left = c.left + 'px'; cartFloating.style.top = c.top + 'px'
-      cartFloating.style.right = 'auto'; cartFloating.style.bottom = 'auto'
-    }
-    if (document.readyState === 'complete') initPos(); else window.addEventListener('load', initPos)
-    window.addEventListener('resize', () => {
-      const c = clamp(parseFloat(cartFloating.style.left) || 0, parseFloat(cartFloating.style.top) || 0)
-      cartFloating.style.left = c.left + 'px'; cartFloating.style.top = c.top + 'px'
-    })
+
     function isDragHandle(target) {
       return target.closest('#cartFloating')
     }
 
     function startDrag(cx, cy) {
-      isDragging = true; hasMoved = false
+      isDragging = true
+      hasMoved = false
       const r = cartFloating.getBoundingClientRect()
-      startLeft = r.left; startTop = r.top; startX = cx; startY = cy
+      startLeft = r.left
+      startTop = r.top
+      startX = cx
+      startY = cy
     }
+
     function onDrag(cx, cy) {
       if (!isDragging) return
-      const dx = cx - startX, dy = cy - startY
+      const dx = cx - startX
+      const dy = cy - startY
       if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) hasMoved = true
       const c = clamp(startLeft + dx, startTop + dy)
-      cartFloating.style.left = c.left + 'px'; cartFloating.style.top = c.top + 'px'
+      cartFloating.style.left = c.left + 'px'
+      cartFloating.style.top = c.top + 'px'
+      cartFloating.style.bottom = 'auto'
+      cartFloating.style.right = 'auto'
     }
+
     function endDrag() { isDragging = false }
 
     cartFloating.addEventListener('touchstart', e => {
@@ -708,7 +805,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('mousemove', e => onDrag(e.clientX, e.clientY))
     window.addEventListener('mouseup', endDrag)
 
-    // Dropdown
+    // Dropdown (mantido igual)
     const cartDropdown = document.getElementById('cartDropdown')
     const closeDropdown = document.getElementById('closeCartDropdown')
     const goToOrderButton = document.querySelector('.dropdown-footer button')
