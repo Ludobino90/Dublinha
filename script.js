@@ -1,4 +1,4 @@
-/* script.js — versão completa com validação de campos e política de privacidade */
+/* script.js — versão corrigida e completa */
 
 const WHATSAPP_NUMBER = '353832023836'
 
@@ -22,7 +22,6 @@ const translations = {
     delivery: "🚚 Delivery", delivery_desc: "We deliver to your home or local pickup.",
     how_it_works: "⏱️ How it works",
     how_it_works_desc: "We produce on the day and deliver the next day. Fresh and frozen to keep the flavor.",
-    // Prova social
     sp_badge: "⭐ Real Reviews",
     sp_title: "What our customers say",
     sp_subtitle: "Over 500 orders delivered in Dublin with lots of love and flavor!",
@@ -39,7 +38,6 @@ const translations = {
     review5_name: "Ricardo Souza", review5_loc: "Dublin 6",
     review6_text: '"¡Las mejores coxinhas de Dublín! Pedí para mi cumpleaños y todos mis amigos quedaron encantados. ¡Ya hice mi segundo pedido!"',
     review6_name: "Laura García", review6_loc: "Dublin 1",
-    // Pedidos
     order_title: "Place your order",
     order_note: "Prices may vary according to quantity and promotions. Check via WhatsApp.",
     cat_coxinhas: "🍗 Coxinhas", cat_pasteis: "🥟 Pastéis",
@@ -56,7 +54,6 @@ const translations = {
     hours2: "DELIVERY: Tue - Thu - Sat: 08:00 — 14:00",
     contact: "Contact", email_label: "Email", phone_label: "Phone",
     company_name: "Dublinha", rights: "All rights reserved.",
-    // Coxinhas
     prod_frango_cremoso: "Creamy Chicken", desc_frango_cremoso: "Traditional coxinha with seasoned creamy chicken.",
     prod_queijo: "Cheese", desc_queijo: "Coxinha stuffed with melted cheese. Yummy!",
     prod_carne: "Minced Beef", desc_carne: "Minced beef with small pieces of tomato, seasoned to perfection.",
@@ -64,12 +61,10 @@ const translations = {
     prod_frango_queijo: "Chicken with Cheese", desc_frango_queijo: "Chicken coxinha with creamy cheese.",
     prod_costela: "Rib", desc_costela: "Coxinha filled with shredded ribs.",
     prod_bisteca: "Pork chop", desc_bisteca: "Pork chop Coxinha, quite juicy.",
-    // Pastéis
     prod_pastel_carne: "Beef Pastel", desc_pastel_carne: "Crispy pastel filled with seasoned minced beef.",
     prod_pastel_queijo: "Cheese Pastel", desc_pastel_queijo: "Crispy pastel with melted cheese filling. Irresistible!",
     prod_pastel_frango: "Chicken Pastel", desc_pastel_frango: "Pastel with creamy seasoned chicken.",
     prod_pastel_calabresa: "Calabresa Pastel", desc_pastel_calabresa: "Pastel filled with smoked calabresa sausage and cheese.",
-    // Kits
     kit_name: "Coxinha Kit",
     kit_50: "📦 Coxinhas Party Kit 50", kit_100: "📦 Coxinhas Party Kit 100",
     quick_kits: "Quick Kits", premium_kits_title: "🎁 Special Kits",
@@ -80,23 +75,25 @@ const translations = {
     kit_massa_pastel_name: "🥟 Pastel Dough",
     kit_massa_pastel_desc: "Fresh artisanal pastel dough, ready to fry at home. Crispy, light and authentic. Pack of 500g.",
     kit_brigadeiro: "Brigadeiro Kit", kit_beijinho: "Beijinho Kit", kit_massa_pastel: "Pastel Dough",
-    // Kits Festa (Mini, Médio, Grande)
     kit_mini_name: "🥇 MINI PARTY KIT (8–12 people)",
     kit_mini_desc: "50 mini coxinhas + 20 brigadeiros + 20 beijinhos",
     kit_medium_name: "🥈 MEDIUM PARTY KIT (15–25 people)",
     kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
     kit_large_name: "🥉 LARGE PARTY KIT (30–50 people)",
     kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
-
-    // Cookie banner
+    kit_mini: "Mini Party Kit", kit_medium: "Medium Party Kit", kit_large: "Large Party Kit",
     cookie_text: "🍪 This site uses cookies only for essential functionality (cart, language). No tracking data is collected.",
     cookie_accept: "Accept",
-    // Geral
-    size_small: "Small (30g)", size_medium: "Medium (60g)", size_large: "Large (100g)", size_mix: "Mix",
+    size_small: "Small (60g)", size_medium: "Medium (100g)", size_large: "Large (200g)", size_mix: "Mix",
     cart_items_title: "Your items", total_label: "Total", view_order: "View order",
     add_button: "Add", selected_items: "Selected items", subtotal: "Subtotal",
     form_note: "By clicking, you will be redirected to WhatsApp with the pre-filled message. No data is stored on this site.",
     added_to_cart: "Item added to cart!",
+    err_name: "Please enter your full name.",
+    err_address: "Please enter your address.",
+    err_phone: "Please enter a valid phone number (min. 7 digits).",
+    err_details: "Please describe your order.",
+    err_items: "Add at least one item before finishing.",
   },
   pt: {
     tagline: "Coxinhas • Pastéis",
@@ -112,7 +109,6 @@ const translations = {
     delivery: "🚚 Entrega", delivery_desc: "Retirada no centro de Dublin ou entrega no seu endereço. Primeiro delivery grátis.",
     how_it_works: "⏱️ Como funciona",
     how_it_works_desc: "Produzimos no dia e entregamos no dia seguinte. Frescas e congeladas para manter o sabor.",
-    // Prova social
     sp_badge: "⭐ Avaliações Reais",
     sp_title: "O que nossos clientes dizem",
     sp_subtitle: "Mais de 500 pedidos entregues em Dublin com muito amor e sabor!",
@@ -129,7 +125,6 @@ const translations = {
     review5_name: "Ricardo Souza", review5_loc: "Dublin 6",
     review6_text: '"¡Las mejores coxinhas de Dublín! Pedí para mi cumpleaños y todos mis amigos quedaron encantados. ¡Ya hice mi segundo pedido!"',
     review6_name: "Laura García", review6_loc: "Dublin 1",
-    // Pedidos
     order_title: "Faça seu pedido",
     order_note: "Os preços podem variar conforme quantidade e promoções. Consulte no WhatsApp.",
     cat_coxinhas: "🍗 Coxinhas", cat_pasteis: "🥟 Pastéis",
@@ -167,20 +162,25 @@ const translations = {
     kit_massa_pastel_name: "🥟 Massa de Pastel",
     kit_massa_pastel_desc: "Massa artesanal fresca para pastel, pronta para fritar em casa. Crocante, sequinha e com o sabor autêntico. Pacote com 500g.",
     kit_brigadeiro: "Kit Brigadeiro", kit_beijinho: "Kit Beijinho", kit_massa_pastel: "Massa de Pastel",
-     kit_mini_name: "🥇 KIT FESTA MINI (8–12 pessoas)",
+    kit_mini_name: "🥇 KIT FESTA MINI (8–12 pessoas)",
     kit_mini_desc: "50 mini coxinhas + 20 brigadeiros + 20 beijinhos",
     kit_medium_name: "🥈 KIT FESTA MÉDIO (15–25 pessoas)",
     kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
     kit_large_name: "🥉 KIT FESTA GRANDE (30–50 pessoas)",
     kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
-
+    kit_mini: "Kit Festa Mini", kit_medium: "Kit Festa Médio", kit_large: "Kit Festa Grande",
     cookie_text: "🍪 Este site utiliza cookies apenas para funcionalidades essenciais (carrinho, idioma). Nenhum dado de rastreamento é coletado.",
     cookie_accept: "Aceitar",
-    size_small: "Pequena (30g)", size_medium: "Média (60g)", size_large: "Grande (100g)", size_mix: "Misto",
+    size_small: "Pequena (60g)", size_medium: "Média (100g)", size_large: "Grande (200g)", size_mix: "Misto",
     cart_items_title: "Seus itens", total_label: "Total", view_order: "Ver pedido",
     add_button: "Adicionar", selected_items: "Itens selecionados", subtotal: "Subtotal",
     form_note: "Ao clicar, você será redirecionado para o WhatsApp com a mensagem pré-preenchida. Nenhum dado é armazenado neste site.",
     added_to_cart: "Item adicionado ao carrinho!",
+    err_name: "Por favor, preencha seu nome completo.",
+    err_address: "Por favor, preencha seu endereço.",
+    err_phone: "Por favor, insira um telefone válido (mín. 7 dígitos).",
+    err_details: "Por favor, descreva seu pedido.",
+    err_items: "Adicione pelo menos um item antes de finalizar.",
   },
   es: {
     tagline: "Coxinhas • Pasteles • Masas",
@@ -196,7 +196,6 @@ const translations = {
     delivery: "🚚 Entrega", delivery_desc: "Entregamos en tu casa o retirada local.",
     how_it_works: "⏱️ Cómo funciona",
     how_it_works_desc: "Producimos el día y entregamos al día siguiente. Frescas y congeladas para mantener el sabor.",
-    // Prova social
     sp_badge: "⭐ Reseñas Reales",
     sp_title: "Lo que dicen nuestros clientes",
     sp_subtitle: "¡Más de 500 pedidos entregados en Dublín con mucho amor y sabor!",
@@ -213,7 +212,6 @@ const translations = {
     review5_name: "Ricardo Souza", review5_loc: "Dublin 6",
     review6_text: '"¡Las mejores coxinhas de Dublín! Pedí para mi cumpleaños y todos mis amigos quedaron encantados. ¡Ya hice mi segundo pedido!"',
     review6_name: "Laura García", review6_loc: "Dublin 1",
-    // Pedidos
     order_title: "Haz tu pedido",
     order_note: "Los precios pueden variar según cantidad y promociones. Consulta por WhatsApp.",
     cat_coxinhas: "🍗 Coxinhas", cat_pasteis: "🥟 Pasteles",
@@ -257,14 +255,19 @@ const translations = {
     kit_medium_desc: "100 mini coxinhas + 40 brigadeiros + 40 beijinhos",
     kit_large_name: "🥉 KIT FIESTA GRANDE (30–50 personas)",
     kit_large_desc: "150 mini coxinhas + 60 brigadeiros + 60 beijinhos",
-
+    kit_mini: "Kit Fiesta Mini", kit_medium: "Kit Fiesta Mediano", kit_large: "Kit Fiesta Grande",
     cookie_text: "🍪 Este sitio utiliza cookies solo para funcionalidades esenciales (carrito, idioma). No se recopilan datos de seguimiento.",
     cookie_accept: "Aceptar",
-    size_small: "Pequeña (30g)", size_medium: "Mediana (60g)", size_large: "Grande (100g)", size_mix: "Mixto",
+    size_small: "Pequeña (60g)", size_medium: "Mediana (100g)", size_large: "Grande (200g)", size_mix: "Mixto",
     cart_items_title: "Tus artículos", total_label: "Total", view_order: "Ver pedido",
     add_button: "Añadir", selected_items: "Artículos seleccionados", subtotal: "Subtotal",
     form_note: "Al hacer clic, serás redirigido a WhatsApp con el mensaje prellenado. No se almacenan datos en este sitio.",
     added_to_cart: "¡Artículo añadido al carrito!",
+    err_name: "Por favor, rellene su nombre completo.",
+    err_address: "Por favor, rellene su dirección.",
+    err_phone: "Por favor, ingrese un teléfono válido (mín. 7 dígitos).",
+    err_details: "Por favor, describa su pedido.",
+    err_items: "Añade al menos un artículo antes de finalizar.",
   }
 }
 
@@ -281,7 +284,6 @@ function setLanguage(lang) {
   })
   document.querySelectorAll(".language-selector button").forEach(btn => btn.classList.remove("active"))
   document.getElementById("lang-" + lang)?.classList.add("active")
-  document.getElementById("mobile-lang-" + lang)?.classList.add("active")
   updateOrder()
 }
 
@@ -291,7 +293,7 @@ function showToast(text) {
   if (!toast) return
   toast.textContent = text
   toast.classList.add('show')
-  setTimeout(() => toast.classList.remove('show'), 2000)
+  setTimeout(() => toast.classList.remove('show'), 2200)
 }
 
 // ========== VISIBILIDADE DO CARRINHO ==========
@@ -299,9 +301,7 @@ function updateCartVisibility() {
   const cart = document.getElementById('cartFloating')
   if (!cart) return
   if (orderList.length > 0) {
-    if (cart.style.display === 'none' || cart.style.display === '') {
-      cart.style.display = 'flex'
-    }
+    cart.style.display = 'flex'
   } else {
     cart.style.display = 'none'
     const dropdown = document.getElementById('cartDropdown')
@@ -312,6 +312,7 @@ function updateCartVisibility() {
 // ========== ATUALIZAR PEDIDO ==========
 function updateOrder() {
   const container = document.getElementById("orderItems")
+  if (!container) return
   container.innerHTML = ""
   total = 0
 
@@ -320,8 +321,6 @@ function updateOrder() {
     total += subtotal
     const productName = translations[currentLang][item.productKey] || item.productKey
     const sizeName = translations[currentLang][item.sizeKey] || item.sizeKey
-
-    // Token no formulário — lixeira em vez de X
     const token = document.createElement("div")
     token.className = "token"
     token.innerHTML = `
@@ -333,37 +332,35 @@ function updateOrder() {
     container.appendChild(token)
   })
 
-  document.getElementById("orderTotal").innerText = total.toFixed(2)
+  const orderTotalEl = document.getElementById("orderTotal")
+  if (orderTotalEl) orderTotalEl.innerText = total.toFixed(2)
 
-  // Dropdown do carrinho — com foto miniatura + lixeira
+  // Dropdown do carrinho
   const preview = document.getElementById('cartItemsPreview')
   if (preview) {
     preview.innerHTML = ''
     orderList.forEach((item, index) => {
       const productName = translations[currentLang][item.productKey] || item.productKey
       const sizeName = translations[currentLang][item.sizeKey] || item.sizeKey
+      const imgSrc = item.imgSrc || 'images/icon.png'
       const div = document.createElement('div')
       div.className = 'preview-item'
-
-      // Fallback de imagem
-      const imgSrc = item.imgSrc || 'images/icon.png'
-
       div.innerHTML = `
         <img class="preview-item-thumb" src="${imgSrc}" alt="${productName}" onerror="this.style.display='none'">
         <div class="preview-item-info">
           <strong>${item.qty}x ${productName}</strong>
           <small>€${(item.price * item.qty).toFixed(2)}</small>
         </div>
-        <button class="preview-item-remove" onclick="removeItemFromDropdown(event, ${index})" title="Remover">
+        <button class="preview-item-remove" onclick="removeItemFromDropdown(event,${index})" title="Remover">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       `
       preview.appendChild(div)
     })
-    document.getElementById('dropdownTotal').innerText = total.toFixed(2)
+    const dropdownTotalEl = document.getElementById('dropdownTotal')
+    if (dropdownTotalEl) dropdownTotalEl.innerText = total.toFixed(2)
   }
 
-  // Badge e subtotal
   const cartBadge = document.getElementById('cartCountBadge')
   const cartSub = document.getElementById('cartSubtotalFloating')
   if (cartBadge) cartBadge.innerText = orderList.reduce((acc, item) => acc + item.qty, 0)
@@ -382,6 +379,67 @@ function removeItemFromDropdown(e, index) {
   if (e?.stopPropagation) e.stopPropagation()
   orderList.splice(index, 1)
   updateOrder()
+}
+
+// ========== VALIDAÇÃO VISUAL DE CAMPOS ==========
+function setFieldError(fieldId, errorId, message) {
+  const field = document.getElementById(fieldId)
+  const errorEl = document.getElementById(errorId)
+  if (field) field.classList.add('field-invalid')
+  if (errorEl) errorEl.textContent = message
+}
+
+function clearFieldError(fieldId, errorId) {
+  const field = document.getElementById(fieldId)
+  const errorEl = document.getElementById(errorId)
+  if (field) field.classList.remove('field-invalid')
+  if (errorEl) errorEl.textContent = ''
+}
+
+function clearAllErrors() {
+  ['name','address','phone','details'].forEach(id => {
+    clearFieldError(id, 'error-' + id)
+  })
+}
+
+function validateForm() {
+  clearAllErrors()
+  const t = translations[currentLang]
+  const name = document.getElementById('name').value.trim()
+  const address = document.getElementById('address').value.trim()
+  const phoneRaw = document.getElementById('phone').value.trim()
+  const details = document.getElementById('details').value.trim()
+
+  let valid = true
+
+  if (!name) {
+    setFieldError('name', 'error-name', t.err_name)
+    valid = false
+  }
+  if (!address) {
+    setFieldError('address', 'error-address', t.err_address)
+    valid = false
+  }
+  if (!phoneRaw || phoneRaw.replace(/\D/g, '').length < 7) {
+    setFieldError('phone', 'error-phone', t.err_phone)
+    valid = false
+  }
+  if (!details) {
+    setFieldError('details', 'error-details', t.err_details)
+    valid = false
+  }
+  if (orderList.length === 0) {
+    setFieldError('details', 'error-details', t.err_items)
+    valid = false
+  }
+
+  // Scroll suave ao primeiro erro
+  if (!valid) {
+    const firstInvalid = document.querySelector('.field-invalid')
+    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
+  return valid
 }
 
 // ========== PAÍSES ==========
@@ -494,91 +552,190 @@ function initCountrySelector() {
     searchInput.addEventListener('input', () => buildCountryList(searchInput.value))
     searchInput.addEventListener('keydown', e => { if (e.key === 'Escape') closeCountryDropdown() })
   }
-  document.addEventListener('click', e => { if (!selector.contains(e.target)) closeCountryDropdown() })
+  document.addEventListener('click', e => { if (!selector?.contains(e.target)) closeCountryDropdown() })
 }
 
-// ========== VALIDAÇÃO DE CAMPOS (ADICIONADA) ==========
-function validateForm() {
-  const name = document.getElementById('name').value.trim()
-  const address = document.getElementById('address').value.trim()
-  const phoneRaw = document.getElementById('phone').value.trim()
-  const details = document.getElementById('details').value.trim()
-
-  // 1. Campos vazios
-  if (!name) {
-    alert('Por favor, preencha seu nome completo.\nPlease fill in your full name.\nPor favor, rellene su nombre completo.')
-    return false
-  }
-  if (!address) {
-    alert('Por favor, preencha seu endereço.\nPlease fill in your address.\nPor favor, rellene su dirección.')
-    return false
-  }
-  if (!phoneRaw) {
-    alert('Por favor, preencha seu telefone.\nPlease fill in your phone number.\nPor favor, rellene su número de teléfono.')
-    return false
-  }
-  if (!details) {
-    alert('Por favor, preencha os detalhes do pedido.\nPlease fill in order details.\nPor favor, rellene los detalles del pedido.')
-    return false
-  }
-  if (orderList.length === 0) {
-    alert('Adicione itens ao pedido antes de finalizar.\nAdd items to your order before finishing.\nAñade artículos al pedido antes de finalizar.')
-    return false
-  }
-
-  // 2. Validação de telefone (apenas dígitos, mínimo 7 dígitos após o código)
-  const digitsOnly = phoneRaw.replace(/\D/g, '')
-  if (digitsOnly.length < 7) {
-    alert('Telefone inválido. Digite pelo menos 7 dígitos (ex: 831234567).\nInvalid phone number. Enter at least 7 digits.\nNúmero de teléfono inválido. Ingrese al menos 7 dígitos.')
-    return false
-  }
-
-  return true
-}
-
-// ========== POLÍTICA DE PRIVACIDADE (MODAL) ==========
+// ========== POLÍTICA DE PRIVACIDADE ==========
 function initPrivacyModal() {
   const modal = document.getElementById('privacyModal')
   const link = document.getElementById('privacyPolicyLink')
   const closeBtn = document.getElementById('closePrivacyModal')
-
   if (!modal || !link) return
+  link.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'flex' })
+  closeBtn?.addEventListener('click', () => { modal.style.display = 'none' })
+  window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none' })
+}
 
-  function openModal() {
-    modal.style.display = 'flex'
+// ========== COOKIE BANNER ==========
+function initCookieBanner() {
+  const cookieBanner = document.getElementById('cookieBanner')
+  const acceptBtn = document.getElementById('acceptCookies')
+  if (!cookieBanner) return
+  if (!localStorage.getItem('cookiesAccepted')) {
+    // Pequeno delay para não colidir com o layout inicial
+    setTimeout(() => { cookieBanner.style.display = 'block' }, 800)
   }
-  function closeModal() {
-    modal.style.display = 'none'
-  }
-
-  link.addEventListener('click', (e) => {
-    e.preventDefault()
-    openModal()
-  })
-  closeBtn.addEventListener('click', closeModal)
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal()
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true')
+    cookieBanner.style.display = 'none'
   })
 }
-  // ========== COOKIE BANNER ==========
-  const cookieBanner = document.getElementById('cookieBanner');
-  const acceptBtn = document.getElementById('acceptCookies');
 
-  function showCookieBanner() {
-    if (!localStorage.getItem('cookiesAccepted')) {
-      cookieBanner.style.display = 'block';
+// ========== CARRINHO FLUTUANTE - ARRASTAR ==========
+function initCart() {
+  const cartFloating = document.getElementById('cartFloating')
+  if (!cartFloating) return
+
+  let isDragging = false, hasMoved = false
+  let startX, startY, startLeft, startTop
+  const MOVE_THRESHOLD = 8
+
+  function clamp(left, top) {
+    const w = cartFloating.offsetWidth, h = cartFloating.offsetHeight
+    return {
+      left: Math.min(Math.max(left, 0), window.innerWidth - w),
+      top: Math.min(Math.max(top, 0), window.innerHeight - h)
     }
   }
 
-  function acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    cookieBanner.style.display = 'none';
+  // Posição inicial: canto inferior esquerdo
+  function setDefaultPosition() {
+    cartFloating.style.bottom = 'auto'
+    cartFloating.style.right = 'auto'
+    cartFloating.style.left = '20px'
+    cartFloating.style.top = (window.innerHeight - cartFloating.offsetHeight - 20) + 'px'
   }
 
-  if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
-  showCookieBanner();
+  // Inicializa posição quando o elemento fica visível pela primeira vez
+  let positionSet = false
+  const posObserver = new MutationObserver(() => {
+    if (cartFloating.style.display === 'flex' && !positionSet) {
+      positionSet = true
+      // Usa rAF para garantir que o layout foi calculado
+      requestAnimationFrame(() => setDefaultPosition())
+    }
+  })
+  posObserver.observe(cartFloating, { attributes: true, attributeFilter: ['style'] })
 
-// ========== INICIALIZAÇÃO ==========
+  window.addEventListener('resize', () => {
+    if (cartFloating.style.display !== 'flex') return
+    const left = parseFloat(cartFloating.style.left)
+    const top = parseFloat(cartFloating.style.top)
+    if (!isNaN(left) && !isNaN(top)) {
+      const c = clamp(left, top)
+      cartFloating.style.left = c.left + 'px'
+      cartFloating.style.top = c.top + 'px'
+    }
+  })
+
+  function startDrag(cx, cy) {
+    isDragging = true; hasMoved = false
+    const r = cartFloating.getBoundingClientRect()
+    startLeft = r.left; startTop = r.top; startX = cx; startY = cy
+  }
+  function onDrag(cx, cy) {
+    if (!isDragging) return
+    const dx = cx - startX, dy = cy - startY
+    if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) hasMoved = true
+    const c = clamp(startLeft + dx, startTop + dy)
+    cartFloating.style.left = c.left + 'px'
+    cartFloating.style.top = c.top + 'px'
+    cartFloating.style.bottom = 'auto'
+    cartFloating.style.right = 'auto'
+  }
+  function endDrag() { isDragging = false }
+
+  cartFloating.addEventListener('touchstart', e => {
+    if (e.target.closest('#cartDropdown')) return
+    startDrag(e.touches[0].clientX, e.touches[0].clientY)
+  }, { passive: true })
+  cartFloating.addEventListener('touchmove', e => {
+    if (!isDragging) return
+    if (e.target.closest('#cartDropdown')) return
+    e.preventDefault()
+    onDrag(e.touches[0].clientX, e.touches[0].clientY)
+  }, { passive: false })
+  cartFloating.addEventListener('touchend', endDrag)
+  cartFloating.addEventListener('touchcancel', endDrag)
+  cartFloating.addEventListener('mousedown', e => {
+    if (e.target.closest('#cartDropdown')) return
+    e.preventDefault(); startDrag(e.clientX, e.clientY)
+  })
+  window.addEventListener('mousemove', e => onDrag(e.clientX, e.clientY))
+  window.addEventListener('mouseup', endDrag)
+
+  // Dropdown
+  const cartDropdown = document.getElementById('cartDropdown')
+  const closeDropdownBtn = document.getElementById('closeCartDropdown')
+  const goToOrderBtn = document.querySelector('.dropdown-footer button')
+
+  cartFloating.addEventListener('click', function(e) {
+    if (hasMoved) { hasMoved = false; return }
+    if (e.target.closest('.close-dropdown') || e.target.closest('.dropdown-footer button') || e.target.closest('.preview-item-remove')) return
+    cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block'
+  })
+  closeDropdownBtn?.addEventListener('click', e => { e.stopPropagation(); cartDropdown.style.display = 'none' })
+  goToOrderBtn?.addEventListener('click', e => {
+    e.stopPropagation()
+    document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })
+    cartDropdown.style.display = 'none'
+  })
+  document.addEventListener('click', e => {
+    if (!cartFloating.contains(e.target)) cartDropdown.style.display = 'none'
+  })
+}
+
+// ========== WHATSAPP FLUTUANTE ARRASTÁVEL ==========
+function initWhatsapp() {
+  const btn = document.getElementById('whatsappFloating')
+  if (!btn) return
+  let isDragging = false, hasMoved = false
+  let startX, startY, startLeft, startTop
+  const MOVE_THRESHOLD = 8
+
+  function clamp(left, top) {
+    const w = btn.offsetWidth, h = btn.offsetHeight
+    return { left: Math.min(Math.max(left, 0), window.innerWidth - w), top: Math.min(Math.max(top, 0), window.innerHeight - h) }
+  }
+  function initPos() {
+    const r = btn.getBoundingClientRect()
+    const c = clamp(r.left, r.top)
+    btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
+    btn.style.right = 'auto'; btn.style.bottom = 'auto'
+  }
+  if (document.readyState === 'complete') initPos(); else window.addEventListener('load', initPos)
+  window.addEventListener('resize', () => {
+    const c = clamp(parseFloat(btn.style.left) || 0, parseFloat(btn.style.top) || 0)
+    btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
+  })
+
+  function startDrag(cx, cy) {
+    isDragging = true; hasMoved = false
+    const r = btn.getBoundingClientRect()
+    startLeft = r.left; startTop = r.top; startX = cx; startY = cy
+  }
+  function onDrag(cx, cy) {
+    if (!isDragging) return
+    const dx = cx - startX, dy = cy - startY
+    if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) hasMoved = true
+    const c = clamp(startLeft + dx, startTop + dy)
+    btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
+  }
+  function endDrag() { isDragging = false }
+
+  btn.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: true })
+  btn.addEventListener('touchmove', e => { e.preventDefault(); onDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: false })
+  btn.addEventListener('touchend', endDrag)
+  btn.addEventListener('touchcancel', endDrag)
+  btn.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY) })
+  window.addEventListener('mousemove', e => onDrag(e.clientX, e.clientY))
+  window.addEventListener('mouseup', endDrag)
+  btn.addEventListener('click', e => { if (hasMoved) { e.preventDefault(); e.stopPropagation(); hasMoved = false } })
+}
+
+// ============================================================
+// INICIALIZAÇÃO — TUDO dentro do DOMContentLoaded
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('year').textContent = new Date().getFullYear()
@@ -638,7 +795,13 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // ADICIONAR PRODUTO (cards normais)
+  // Limpa erro ao digitar
+  ;['name','address','phone','details'].forEach(id => {
+    const el = document.getElementById(id)
+    if (el) el.addEventListener('input', () => clearFieldError(id, 'error-' + id))
+  })
+
+  // ADICIONAR PRODUTO
   document.querySelectorAll(".add-item").forEach(btn => {
     btn.addEventListener("click", function () {
       const product = this.closest(".product")
@@ -649,10 +812,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const price = parseFloat(activeSize.dataset.price)
       const qty = parseInt(product.querySelector(".qty").value) || 1
       const imgSrc = product.dataset.img || product.querySelector('.product-img')?.src || ''
-
       const existing = orderList.find(i => i.productKey === productKey && i.sizeKey === sizeKey)
       if (existing) { existing.qty += qty } else { orderList.push({ productKey, sizeKey, price, qty, imgSrc }) }
-
       product.classList.add("added")
       setTimeout(() => product.classList.remove("added"), 300)
       updateOrder()
@@ -690,191 +851,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-    // ========== CARRINHO FLUTUANTE - ARRASTAR (COM POSIÇÃO INICIAL CORRETA) ==========
-  ;(function () {
-    const cartFloating = document.getElementById('cartFloating')
-    if (!cartFloating) return
-
-    let isDragging = false, hasMoved = false
-    let startX, startY, startLeft, startTop
-    const MOVE_THRESHOLD = 8
-
-    // Função para posicionar no canto inferior esquerdo (padrão)
-    function resetToDefaultPosition() {
-      cartFloating.style.left = '20px'
-      cartFloating.style.bottom = '20px'
-      cartFloating.style.top = 'auto'
-      cartFloating.style.right = 'auto'
-    }
-
-    function clamp(left, top) {
-      const w = cartFloating.offsetWidth, h = cartFloating.offsetHeight
-      // Impede que saia da tela
-      const maxLeft = window.innerWidth - w
-      const maxTop = window.innerHeight - h
-      return { left: Math.min(Math.max(left, 0), maxLeft), top: Math.min(Math.max(top, 0), maxTop) }
-    }
-
-    function initPos() {
-      // Se o carrinho está visível e não tem posição definida, coloca no padrão
-      if (cartFloating.style.display === 'flex') {
-        const currentLeft = cartFloating.style.left
-        const currentTop = cartFloating.style.top
-        if (!currentLeft || currentLeft === 'auto') {
-          resetToDefaultPosition()
-        }
-      }
-    }
-
-    // Observa mudanças no display (quando o carrinho aparece)
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'style') {
-          if (cartFloating.style.display === 'flex') {
-            // Se acabou de ficar visível, reposiciona no canto inferior esquerdo
-            resetToDefaultPosition()
-          }
-        }
-      })
-    })
-    observer.observe(cartFloating, { attributes: true })
-
-    // Ajusta ao redimensionar a tela
-    window.addEventListener('resize', () => {
-      if (cartFloating.style.display === 'flex') {
-        const left = parseFloat(cartFloating.style.left)
-        const top = parseFloat(cartFloating.style.top)
-        if (!isNaN(left) && !isNaN(top)) {
-          const c = clamp(left, top)
-          cartFloating.style.left = c.left + 'px'
-          cartFloating.style.top = c.top + 'px'
-        } else {
-          resetToDefaultPosition()
-        }
-      }
-    })
-
-    function isInsideScrollableArea(target) {
-      return target.closest('.product-list, #cartDropdown, .preview-item, .dropdown-content')
-    }
-
-    function isDragHandle(target) {
-      return target.closest('#cartFloating')
-    }
-
-    function startDrag(cx, cy) {
-      isDragging = true
-      hasMoved = false
-      const r = cartFloating.getBoundingClientRect()
-      startLeft = r.left
-      startTop = r.top
-      startX = cx
-      startY = cy
-    }
-
-    function onDrag(cx, cy) {
-      if (!isDragging) return
-      const dx = cx - startX
-      const dy = cy - startY
-      if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) hasMoved = true
-      const c = clamp(startLeft + dx, startTop + dy)
-      cartFloating.style.left = c.left + 'px'
-      cartFloating.style.top = c.top + 'px'
-      cartFloating.style.bottom = 'auto'
-      cartFloating.style.right = 'auto'
-    }
-
-    function endDrag() { isDragging = false }
-
-    cartFloating.addEventListener('touchstart', e => {
-      if (isInsideScrollableArea(e.target)) return
-      if (!isDragHandle(e.target)) return
-      startDrag(e.touches[0].clientX, e.touches[0].clientY)
-    }, { passive: true })
-
-    cartFloating.addEventListener('touchmove', e => {
-      if (!isDragging) return
-      if (isInsideScrollableArea(e.target)) return
-      e.preventDefault()
-      onDrag(e.touches[0].clientX, e.touches[0].clientY)
-    }, { passive: false })
-
-    cartFloating.addEventListener('touchend', endDrag)
-    cartFloating.addEventListener('touchcancel', endDrag)
-    cartFloating.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY) })
-    window.addEventListener('mousemove', e => onDrag(e.clientX, e.clientY))
-    window.addEventListener('mouseup', endDrag)
-
-    // Dropdown (mantido igual)
-    const cartDropdown = document.getElementById('cartDropdown')
-    const closeDropdown = document.getElementById('closeCartDropdown')
-    const goToOrderButton = document.querySelector('.dropdown-footer button')
-
-    cartFloating.addEventListener('click', function (e) {
-      if (hasMoved) { hasMoved = false; return }
-      if (e.target.closest('.close-dropdown') || e.target.closest('.dropdown-footer button') || e.target.closest('.preview-item-remove')) return
-      cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block'
-    })
-    closeDropdown?.addEventListener('click', e => { e.stopPropagation(); cartDropdown.style.display = 'none' })
-    goToOrderButton?.addEventListener('click', e => {
-      e.stopPropagation()
-      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })
-      cartDropdown.style.display = 'none'
-    })
-    document.addEventListener('click', e => { if (!cartFloating.contains(e.target)) cartDropdown.style.display = 'none' })
-  })()
-
-  // ========== WHATSAPP FLUTUANTE ARRASTÁVEL ==========
-  ;(function () {
-    const btn = document.getElementById('whatsappFloating')
-    if (!btn) return
-    let isDragging = false, hasMoved = false
-    let startX, startY, startLeft, startTop
-    const MOVE_THRESHOLD = 8
-
-    function clamp(left, top) {
-      const w = btn.offsetWidth, h = btn.offsetHeight
-      return { left: Math.min(Math.max(left, 0), window.innerWidth - w), top: Math.min(Math.max(top, 0), window.innerHeight - h) }
-    }
-    function initPos() {
-      const r = btn.getBoundingClientRect()
-      const c = clamp(r.left, r.top)
-      btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
-      btn.style.right = 'auto'; btn.style.bottom = 'auto'
-    }
-    if (document.readyState === 'complete') initPos(); else window.addEventListener('load', initPos)
-    window.addEventListener('resize', () => {
-      const c = clamp(parseFloat(btn.style.left) || 0, parseFloat(btn.style.top) || 0)
-      btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
-    })
-
-    function startDrag(cx, cy) {
-      isDragging = true; hasMoved = false
-      const r = btn.getBoundingClientRect()
-      startLeft = r.left; startTop = r.top; startX = cx; startY = cy
-    }
-    function onDrag(cx, cy) {
-      if (!isDragging) return
-      const dx = cx - startX, dy = cy - startY
-      if (Math.abs(dx) > MOVE_THRESHOLD || Math.abs(dy) > MOVE_THRESHOLD) hasMoved = true
-      const c = clamp(startLeft + dx, startTop + dy)
-      btn.style.left = c.left + 'px'; btn.style.top = c.top + 'px'
-    }
-    function endDrag() { isDragging = false }
-
-    btn.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: true })
-    btn.addEventListener('touchmove', e => { e.preventDefault(); onDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: false })
-    btn.addEventListener('touchend', endDrag)
-    btn.addEventListener('touchcancel', endDrag)
-    btn.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY) })
-    window.addEventListener('mousemove', e => onDrag(e.clientX, e.clientY))
-    window.addEventListener('mouseup', endDrag)
-    btn.addEventListener('click', e => { if (hasMoved) { e.preventDefault(); e.stopPropagation(); hasMoved = false } })
-  })()
-
-  // SELETOR DE PAÍS
-  initCountrySelector()
-
   // MENU HAMBURGER
   const navToggle = document.getElementById('navToggle')
   const mobileMenu = document.getElementById('mobileMenu')
@@ -883,17 +859,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show')))
   }
 
-  // ENVIO WHATSAPP COM VALIDAÇÃO (MODIFICADO)
-  document.getElementById('sendWhatsApp').addEventListener('click', function () {
-    // Validação completa
+  // ENVIO WHATSAPP
+  document.getElementById('sendWhatsApp')?.addEventListener('click', function () {
     if (!validateForm()) return
-
     const name = document.getElementById('name').value.trim()
     const address = document.getElementById('address').value.trim()
     const phoneRaw = document.getElementById('phone').value.trim()
     const phone = selectedCountry.dial + ' ' + phoneRaw
     const details = document.getElementById('details').value.trim()
-
     let message = `*Pedido via Site*\n\n*Nome:* ${name}\n*Endereço:* ${address}\n*Telefone:* ${phone}\n*Detalhes:* ${details}\n\n*Itens:*\n`
     orderList.forEach(item => {
       const pName = translations[currentLang][item.productKey] || item.productKey
@@ -905,6 +878,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank')
   })
 
-  // Inicializar modal de privacidade
+  // INICIALIZAR MÓDULOS
+  initCountrySelector()
   initPrivacyModal()
+  initCookieBanner()   // ← agora DENTRO do DOMContentLoaded
+  initCart()           // ← agora DENTRO do DOMContentLoaded
+  initWhatsapp()       // ← agora DENTRO do DOMContentLoaded
 })
