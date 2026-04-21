@@ -4,26 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dublinha — Encomendas e Delivery</title>
-
-  <!--Icon-->
   <link rel="icon" type="image/png" href="images/icon.png">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome (ícones) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-  <!-- Site CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- ======================
-       HEADER
-       ====================== -->
+
+  <!-- ====================== HEADER ====================== -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
@@ -33,27 +22,20 @@
           <p class="tagline" data-i18n="tagline">Coxinhas • Pastéis</p>
         </div>
       </div>
-
-        <div class="language-selector">
-          <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
-          <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
-          <button onclick="setLanguage('es')" id="lang-es">ES</button>
-        </div>
-
-      <!-- Navegação (desktop) -->
+      <div class="language-selector">
+        <button onclick="setLanguage('en')" id="lang-en" class="active">EN</button>
+        <button onclick="setLanguage('pt')" id="lang-pt">PT</button>
+        <button onclick="setLanguage('es')" id="lang-es">ES</button>
+      </div>
       <nav class="main-nav" aria-label="Menu principal">
         <a href="#home" data-i18n="menu_home">Home</a>
         <a href="#contato" data-i18n="menu_order">Orders</a>
         <a href="#header-footer" data-i18n="menu_contact">Contact</a>
       </nav>
-
-      <!-- Botão hambúrguer (mobile) -->
       <button id="navToggle" class="nav-toggle" aria-label="Abrir menu">
         <span class="hamburger"></span>
       </button>
     </div>
-
-    <!-- Menu mobile oculto por padrão -->
     <div id="mobileMenu" class="mobile-menu">
       <a href="#home" class="mobile-link" data-i18n="menu_home">Home</a>
       <a href="#encomendas" class="mobile-link" data-i18n="menu_order">Orders</a>
@@ -62,13 +44,11 @@
   </header>
 
   <main id="home">
-    <!-- ======================
-         CARROSSEL DE DESTAQUE
-         ====================== -->
+
+    <!-- ====================== HERO ====================== -->
     <section class="hero">
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          <!-- SLIDE 1 -->
           <div class="swiper-slide">
             <img src="images/slide1.jpg" alt="Coxinhas deliciosas" />
             <div class="slide-caption">
@@ -76,7 +56,6 @@
               <p data-i18n="slide1_desc">Crocante por fora, cremosa por dentro — peça já para sua festa!</p>
             </div>
           </div>
-          <!-- SLIDE 2 -->
           <div class="swiper-slide">
             <img src="images/slide2.png" alt="Pastéis quentinhos" />
             <div class="slide-caption">
@@ -84,7 +63,6 @@
               <p data-i18n="slide2_desc">Recheios: carne, queijo, frango — e muito mais.</p>
             </div>
           </div>
-          <!-- SLIDE 3 -->
           <div class="swiper-slide">
             <img src="images/slide3.png" alt="Produção artesanal" />
             <div class="slide-caption">
@@ -92,7 +70,6 @@
               <p data-i18n="slide3_desc">Receitas artesanais e ingredientes frescos.</p>
             </div>
           </div>
-          <!-- SLIDE 4 -->
           <div class="swiper-slide">
             <img src="images/slide4.png" alt="Combo festa" />
             <div class="slide-caption">
@@ -101,69 +78,134 @@
             </div>
           </div>
         </div>
-
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
-
-        <!-- BOTÃO VER PRODUTOS no slide (canto inferior direito) -->
-        <a href="#encomendas" class="slide-order-btn" id="slideOrderBtn" data-i18n="slide_order_btn">
+        <a href="#encomendas" class="slide-order-btn" id="slideOrderBtn">
           <i class="fa-solid fa-bag-shopping"></i>
           <span data-i18n="slide_order_btn">Ver Produtos</span>
         </a>
       </div>
-
-      
     </section>
 
+    <!-- ====================== INFO CARDS ====================== -->
     <section class="info-clean container">
+      <div class="info-grid">
+        <div class="info-card">
+          <h3 data-i18n="our_dough_1">🥔 Nossa massa</h3>
+          <p data-i18n="our_dough_1_desc">Feita com batata e farinha, leve por dentro e crocante por fora.</p>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="party_kits">🎉 Kits festa</h3>
+          <p data-i18n="party_kits_desc">Coxinhas de 30g perfeitas para eventos. Misture os sabores como quiser.</p>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="delivery">🚚 Entrega</h3>
+          <p data-i18n="delivery_desc">Retirada no centro de Dublin ou entrega no seu endereço. Primeiro delivery grátis.</p>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="how_it_works">⏱️ Como funciona</h3>
+          <p data-i18n="how_it_works_desc">Produzimos no dia e entregamos no dia seguinte. Frescas e congeladas para manter o sabor.</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="info-grid">
+    <!-- ====================== PROVA SOCIAL ====================== -->
+    <section class="social-proof container">
+      <div class="social-proof-header">
+        <span class="sp-badge" data-i18n="sp_badge">⭐ Avaliações Reais</span>
+        <h2 data-i18n="sp_title">O que nossos clientes dizem</h2>
+        <p class="sp-subtitle" data-i18n="sp_subtitle">Mais de 500 pedidos entregues em Dublin com muito amor e sabor!</p>
+      </div>
+      <div class="sp-stats">
+        <div class="sp-stat">
+          <span class="sp-stat-number">500+</span>
+          <span class="sp-stat-label" data-i18n="sp_stat_orders">Pedidos</span>
+        </div>
+        <div class="sp-stat">
+          <span class="sp-stat-number">4.9★</span>
+          <span class="sp-stat-label" data-i18n="sp_stat_rating">Avaliação</span>
+        </div>
+        <div class="sp-stat">
+          <span class="sp-stat-number">98%</span>
+          <span class="sp-stat-label" data-i18n="sp_stat_happy">Satisfação</span>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review1_text">"A melhor coxinha que já comi em Dublin! A massa é perfeita e o frango cremoso derrete na boca. Já pedi 3 vezes!"</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div>
+              <strong data-i18n="review1_name">Ana Silva</strong>
+              <span class="review-location" data-i18n="review1_loc">Dublin 4</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review2_text">"Pedi o kit de 100 coxinhas para o aniversário da minha filha e todo mundo amou! Chegaram fresquinhas e crocantes. Super recomendo!"</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <strong data-i18n="review2_name">Marcos Oliveira</strong>
+              <span class="review-location" data-i18n="review2_loc">Dublin 15</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review3_text">"Saudade de casa resolvida! O pastel de queijo é incrível. Entrega pontual e bem embalado. Dublinha é referência aqui em Dublin!"</p>
+          <div class="review-author">
+            <div class="review-avatar">C</div>
+            <div>
+              <strong data-i18n="review3_name">Carla Mendes</strong>
+              <span class="review-location" data-i18n="review3_loc">Dublin 8</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review4_text">"Incredible coxinhas! I tried them at a friend's party and immediately ordered for my own event. Crispy outside, perfect filling inside!"</p>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <strong data-i18n="review4_name">Sarah O'Brien</strong>
+              <span class="review-location" data-i18n="review4_loc">Dublin 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review5_text">"Desde que descobri a Dublinha não consigo comer coxinha de outro lugar. A costela desfiada é um espetáculo!"</p>
+          <div class="review-author">
+            <div class="review-avatar">R</div>
+            <div>
+              <strong data-i18n="review5_name">Ricardo Souza</strong>
+              <span class="review-location" data-i18n="review5_loc">Dublin 6</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="review6_text">"¡Las mejores coxinhas de Dublín! Pedí para mi cumpleaños y todos mis amigos quedaron encantados. ¡Ya hice mi segundo pedido!"</p>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div>
+              <strong data-i18n="review6_name">Laura García</strong>
+              <span class="review-location" data-i18n="review6_loc">Dublin 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- BLOCO 1 -->
-    <div class="info-card">
-      <h3 data-i18n="our_dough_1">🥔 Nossa massa</h3>
-      <p data-i18n="our_dough_1_desc">
-        Feita com batata e farinha, leve por dentro e crocante por fora.
-      </p>
-    </div>
-
-    <!-- BLOCO 2 -->
-    <div class="info-card">
-      <h3 data-i18n="party_kits">🎉 Kits festa</h3>
-      <p data-i18n="party_kits_desc">
-        Coxinhas de 30g perfeitas para eventos. Misture os sabores como quiser.
-      </p>
-    </div>
-
-    <!-- BLOCO 3 -->
-    <div class="info-card">
-      <h3 data-i18n="delivery">🚚 Entrega</h3>
-      <p data-i18n="delivery_desc">
-        Retirada no centro de Dublin ou entrega no seu endereço. Primeiro delivery grátis.
-      </p>
-    </div>
-
-    <!-- BLOCO 4 -->
-    <div class="info-card">
-      <h3 data-i18n="how_it_works">⏱️ Como funciona</h3>
-      <p data-i18n="how_it_works_desc">
-        Produzimos no dia e entregamos no dia seguinte. Frescas e congeladas para manter o sabor.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- ======================
-         ENCOMENDAS
-         ====================== -->
+    <!-- ====================== ENCOMENDAS ====================== -->
     <section id="encomendas" class="section-encomendas container">
       <h2 data-i18n="order_title">Place your order</h2>
       <p class="note" data-i18n="order_note">Prices may vary according to quantity and promotions. Check via WhatsApp.</p>
 
-      <!-- FILTRO DE CATEGORIAS -->
       <div class="category-tabs">
         <button class="cat-tab active" data-cat="coxinhas" data-i18n="cat_coxinhas">🍗 Coxinhas</button>
         <button class="cat-tab" data-cat="pasteis" data-i18n="cat_pasteis">🥟 Pastéis</button>
@@ -172,187 +214,131 @@
       <!-- GRID COXINHAS -->
       <div class="product-grid" id="grid-coxinhas">
 
-        <!-- FRANGO CREMOSO -->
-        <article class="product" data-product="Frango Cremoso" data-product-key="prod_frango_cremoso">
+        <article class="product" data-product="Frango Cremoso" data-product-key="prod_frango_cremoso" data-img="images/frango-cremoso.jpg">
           <div class="badge-best">⭐ Best Seller</div>
-          <img src="images/frango-cremoso.jpg" class="product-img">
+          <img src="images/frango-cremoso.jpg" class="product-img" alt="Frango Cremoso">
           <h3 data-i18n="prod_frango_cremoso">Frango Cremoso</h3>
           <p class="desc" data-i18n="desc_frango_cremoso">Coxinha tradicional com frango cremoso temperado.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.50">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.00">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="2.50">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.00">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.00">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">2.50</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- QUEIJO -->
-        <article class="product" data-product="Queijo" data-product-key="prod_queijo">
-          <img src="images/queijo.jpg" class="product-img">
+        <article class="product" data-product="Queijo" data-product-key="prod_queijo" data-img="images/queijo.jpg">
+          <img src="images/queijo.jpg" class="product-img" alt="Queijo">
           <h3 data-i18n="prod_queijo">Queijo</h3>
           <p class="desc" data-i18n="desc_queijo">Coxinha recheada com queijo. HMMMMMMM</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.70">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.20">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.30">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="2.70">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.20">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.30">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">2.70</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- CARNE+TOMATE -->
-        <article class="product" data-product="Carne" data-product-key="prod_carne">
-          <img src="images/carne.jpg" class="product-img">
+        <article class="product" data-product="Carne" data-product-key="prod_carne" data-img="images/carne.jpg">
+          <img src="images/carne.jpg" class="product-img" alt="Carne">
           <h3 data-i18n="prod_carne">Carne com Tomate</h3>
           <p class="desc" data-i18n="desc_carne">Coxinha recheada com carne e tomate.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.50">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.00">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="2.50">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.00">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.00">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">2.50</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- CALABRESA -->
-        <article class="product" data-product="Calabresa" data-product-key="prod_calabresa">
-          <img src="images/calabreza.jpg" class="product-img">
+        <article class="product" data-product="Calabresa" data-product-key="prod_calabresa" data-img="images/calabreza.jpg">
+          <img src="images/calabreza.jpg" class="product-img" alt="Calabresa">
           <h3 data-i18n="prod_calabresa">Calabresa</h3>
           <p class="desc" data-i18n="desc_calabresa">Coxinha com recheio de calabresa defumada.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="2.80">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.30">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.40">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="2.80">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.30">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.40">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">2.80</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- FRANGO + QUEIJO -->
-        <article class="product" data-product="Frango com Queijo" data-product-key="prod_frango_queijo">
-          <img src="images/frango.jpg" class="product-img">
+        <article class="product" data-product="Frango com Queijo" data-product-key="prod_frango_queijo" data-img="images/frango.jpg">
+          <img src="images/frango.jpg" class="product-img" alt="Frango com Queijo">
           <h3 data-i18n="prod_frango_queijo">Frango com Queijo</h3>
           <p class="desc" data-i18n="desc_frango_queijo">Coxinha de frango com queijo.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.20">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="5.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="7.00">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.20">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="5.00">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="7.00">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.20</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- COSTELA -->
-        <article class="product" data-product="Costela" data-product-key="prod_costela">
-          <img src="images/costela.jpg" class="product-img">
+        <article class="product" data-product="Costela" data-product-key="prod_costela" data-img="images/costela.jpg">
+          <img src="images/costela.jpg" class="product-img" alt="Costela">
           <h3 data-i18n="prod_costela">Costela</h3>
           <p class="desc" data-i18n="desc_costela">Coxinha recheada com costela desfiada.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.20">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="5.00">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="7.00">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.20">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="5.00">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="7.00">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.20</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- BISTECA -->
-        <article class="product" data-product="Bisteca" data-product-key="prod_bisteca">
-          <img src="images/bisteca.jpg" class="product-img">
+        <article class="product" data-product="Bisteca" data-product-key="prod_bisteca" data-img="images/bisteca.jpg">
+          <img src="images/bisteca.jpg" class="product-img" alt="Bisteca">
           <h3 data-i18n="prod_bisteca">Bisteca</h3>
           <p class="desc" data-i18n="desc_bisteca">Coxinha recheada com Bisteca desfiada.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequena (30g)" data-size-key="size_small" data-price="3.00">30g</button>
-            <button class="size-btn medium" data-size="Média (60g)" data-size-key="size_medium" data-price="4.80">60g</button>
-            <button class="size-btn large" data-size="Grande (100g)" data-size-key="size_large" data-price="6.80">100g</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.00">30g</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.80">60g</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.80">100g</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.00</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
       </div><!-- /grid-coxinhas -->
@@ -360,128 +346,101 @@
       <!-- GRID PASTÉIS -->
       <div class="product-grid" id="grid-pasteis" style="display:none;">
 
-        <!-- PASTEL DE CARNE -->
-        <article class="product" data-product="Pastel de Carne" data-product-key="prod_pastel_carne">
-          <img src="images/carne.jpg" class="product-img">
+        <article class="product" data-product="Pastel de Carne" data-product-key="prod_pastel_carne" data-img="images/carne.jpg">
+          <img src="images/carne.jpg" class="product-img" alt="Pastel de Carne">
           <h3 data-i18n="prod_pastel_carne">Pastel de Carne</h3>
           <p class="desc" data-i18n="desc_pastel_carne">Pastel crocante recheado com carne moída temperada.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequeno" data-size-key="size_small" data-price="3.00">P</button>
-            <button class="size-btn medium" data-size="Médio" data-size-key="size_medium" data-price="4.50">M</button>
-            <button class="size-btn large" data-size="Grande" data-size-key="size_large" data-price="6.50">G</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.00">P</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.50">M</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.50">G</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.00</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- PASTEL DE QUEIJO -->
-        <article class="product" data-product="Pastel de Queijo" data-product-key="prod_pastel_queijo">
+        <article class="product" data-product="Pastel de Queijo" data-product-key="prod_pastel_queijo" data-img="images/queijo.jpg">
           <div class="badge-best">⭐ Best Seller</div>
-          <img src="images/queijo.jpg" class="product-img">
+          <img src="images/queijo.jpg" class="product-img" alt="Pastel de Queijo">
           <h3 data-i18n="prod_pastel_queijo">Pastel de Queijo</h3>
           <p class="desc" data-i18n="desc_pastel_queijo">Pastel crocante com recheio de queijo derretido. Irresistível!</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequeno" data-size-key="size_small" data-price="2.80">P</button>
-            <button class="size-btn medium" data-size="Médio" data-size-key="size_medium" data-price="4.20">M</button>
-            <button class="size-btn large" data-size="Grande" data-size-key="size_large" data-price="6.00">G</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="2.80">P</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.20">M</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.00">G</button>
           </div>
-
           <p class="price">€ <span class="price-value">2.80</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- PASTEL DE FRANGO -->
-        <article class="product" data-product="Pastel de Frango" data-product-key="prod_pastel_frango">
-          <img src="images/frango-cremoso.jpg" class="product-img">
+        <article class="product" data-product="Pastel de Frango" data-product-key="prod_pastel_frango" data-img="images/frango-cremoso.jpg">
+          <img src="images/frango-cremoso.jpg" class="product-img" alt="Pastel de Frango">
           <h3 data-i18n="prod_pastel_frango">Pastel de Frango</h3>
           <p class="desc" data-i18n="desc_pastel_frango">Pastel com frango cremoso temperado e muito sabor.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequeno" data-size-key="size_small" data-price="3.00">P</button>
-            <button class="size-btn medium" data-size="Médio" data-size-key="size_medium" data-price="4.50">M</button>
-            <button class="size-btn large" data-size="Grande" data-size-key="size_large" data-price="6.50">G</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.00">P</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.50">M</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.50">G</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.00</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
-        <!-- PASTEL DE CALABRESA -->
-        <article class="product" data-product="Pastel de Calabresa" data-product-key="prod_pastel_calabresa">
-          <img src="images/calabreza.jpg" class="product-img">
+        <article class="product" data-product="Pastel de Calabresa" data-product-key="prod_pastel_calabresa" data-img="images/calabreza.jpg">
+          <img src="images/calabreza.jpg" class="product-img" alt="Pastel de Calabresa">
           <h3 data-i18n="prod_pastel_calabresa">Pastel de Calabresa</h3>
           <p class="desc" data-i18n="desc_pastel_calabresa">Pastel com recheio de calabresa defumada e queijo.</p>
-
           <div class="size-selector">
-            <button class="size-btn small active" data-size="Pequeno" data-size-key="size_small" data-price="3.20">P</button>
-            <button class="size-btn medium" data-size="Médio" data-size-key="size_medium" data-price="4.80">M</button>
-            <button class="size-btn large" data-size="Grande" data-size-key="size_large" data-price="6.80">G</button>
+            <button class="size-btn small active" data-size-key="size_small" data-price="3.20">P</button>
+            <button class="size-btn medium" data-size-key="size_medium" data-price="4.80">M</button>
+            <button class="size-btn large" data-size-key="size_large" data-price="6.80">G</button>
           </div>
-
           <p class="price">€ <span class="price-value">3.20</span></p>
-
           <div class="qty-control">
             <button class="qty-btn minus">-</button>
             <input class="qty" type="number" value="1" min="1" max="999">
             <button class="qty-btn plus">+</button>
           </div>
-
-          <button class="add-item">
-            <i class="fa-solid fa-cart-plus"></i>
-            <span data-i18n="add_button">Adicionar</span>
-          </button>
+          <button class="add-item"><i class="fa-solid fa-cart-plus"></i> <span data-i18n="add_button">Adicionar</span></button>
         </article>
 
       </div><!-- /grid-pasteis -->
 
-      <!-- KITS (mostrados para ambas as categorias) -->
+      <!-- KITS RÁPIDOS -->
       <div class="kits-area">
         <h3 data-i18n="quick_kits">Quick Kits</h3>
         <div class="kits">
-          <button class="kit-btn" data-kit="50" data-i18n="kit_50">📦 Coxinhas Kit de Festa 50</button>
-          <button class="kit-btn" data-kit="100" data-i18n="kit_100">📦 Coxinhas Kit de Festa 100</button>
+          <button class="kit-btn" data-kit="50" data-kit-img="images/slide1.jpg">
+            <span data-i18n="kit_50">📦 Coxinhas Kit de Festa 50</span>
+            <span class="kit-price-tag">€110</span>
+          </button>
+          <button class="kit-btn" data-kit="100" data-kit-img="images/slide1.jpg">
+            <span data-i18n="kit_100">📦 Coxinhas Kit de Festa 100</span>
+            <span class="kit-price-tag">€220</span>
+          </button>
         </div>
       </div>
 
-      <!-- KITS PREMIUM (com foto) -->
+      <!-- KITS PREMIUM -->
       <div class="premium-kits-area">
         <h3 data-i18n="premium_kits_title">🎁 Kits Especiais</h3>
         <div class="premium-kits-grid">
 
-          <!-- BRIGADEIRO -->
           <div class="premium-kit-card">
             <div class="pkit-img-wrap">
               <img src="images/slide1.jpg" alt="Kit Brigadeiro" class="pkit-img">
@@ -491,13 +450,15 @@
                 <p data-i18n="kit_brigadeiro_desc">Brigadeiros artesanais feitos com cacau de qualidade. Perfeitos para festas e eventos especiais. Porções de 12 unidades.</p>
               </div>
             </div>
-            <button class="kit-premium-btn add-item-kit" data-product-key="kit_brigadeiro" data-size-key="size_mix" data-price="15.00">
-              <i class="fa-solid fa-cart-plus"></i>
-              <span data-i18n="add_button">Adicionar</span>
-            </button>
+            <div class="pkit-footer">
+              <span class="pkit-price">€15.00</span>
+              <button class="kit-premium-btn add-item-kit" data-product-key="kit_brigadeiro" data-size-key="size_mix" data-price="15.00" data-img="images/slide1.jpg">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span data-i18n="add_button">Adicionar</span>
+              </button>
+            </div>
           </div>
 
-          <!-- BEIJINHO -->
           <div class="premium-kit-card">
             <div class="pkit-img-wrap">
               <img src="images/slide2.png" alt="Kit Beijinho" class="pkit-img">
@@ -507,13 +468,15 @@
                 <p data-i18n="kit_beijinho_desc">Beijinhos de coco fresquinhos, suaves e irresistíveis. Ideais para completar sua mesa de doces. Porções de 12 unidades.</p>
               </div>
             </div>
-            <button class="kit-premium-btn add-item-kit" data-product-key="kit_beijinho" data-size-key="size_mix" data-price="15.00">
-              <i class="fa-solid fa-cart-plus"></i>
-              <span data-i18n="add_button">Adicionar</span>
-            </button>
+            <div class="pkit-footer">
+              <span class="pkit-price">€15.00</span>
+              <button class="kit-premium-btn add-item-kit" data-product-key="kit_beijinho" data-size-key="size_mix" data-price="15.00" data-img="images/slide2.png">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span data-i18n="add_button">Adicionar</span>
+              </button>
+            </div>
           </div>
 
-          <!-- MASSA DE PASTEL -->
           <div class="premium-kit-card">
             <div class="pkit-img-wrap">
               <img src="images/slide3.png" alt="Kit Massa de Pastel" class="pkit-img">
@@ -523,10 +486,13 @@
                 <p data-i18n="kit_massa_pastel_desc">Massa artesanal fresca para pastel, pronta para fritar em casa. Crocante, sequinha e com o sabor autêntico. Pacote com 20 unidades.</p>
               </div>
             </div>
-            <button class="kit-premium-btn add-item-kit" data-product-key="kit_massa_pastel" data-size-key="size_mix" data-price="12.00">
-              <i class="fa-solid fa-cart-plus"></i>
-              <span data-i18n="add_button">Adicionar</span>
-            </button>
+            <div class="pkit-footer">
+              <span class="pkit-price">€12.00</span>
+              <button class="kit-premium-btn add-item-kit" data-product-key="kit_massa_pastel" data-size-key="size_mix" data-price="12.00" data-img="images/slide3.png">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span data-i18n="add_button">Adicionar</span>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -544,7 +510,6 @@
 
           <label for="phone" data-i18n="label_phone">Phone (with area code)</label>
           <div class="phone-input-wrap">
-            <!-- SELETOR DE PAÍS COM BANDEIRA -->
             <div class="country-selector" id="countrySelector">
               <button type="button" class="country-btn" id="countryBtn">
                 <span class="country-flag" id="selectedFlag">🇮🇪</span>
@@ -578,9 +543,7 @@
       </div>
     </section>
 
-    <!-- ======================
-         PAGAMENTO E DELIVERY
-         ====================== -->
+    <!-- ====================== PAYMENT & DELIVERY ====================== -->
     <section class="payment-delivery container">
       <h2 data-i18n="payment_title">Payment & Delivery</h2>
       <div class="cards">
@@ -603,7 +566,7 @@
     </section>
   </main>
 
-  <!-- WHATSAPP FLUTUANTE (link corrigido e arrastável) -->
+  <!-- WHATSAPP FLUTUANTE -->
   <a href="https://wa.me/353832023836" id="whatsappFloating" class="whatsapp-floating" aria-label="Contato WhatsApp" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
@@ -640,22 +603,20 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="script.js"></script>
-  <!-- Ícone do carrinho flutuante com contador e subtotal -->
-  <div id="cartFloating" class="cart-floating">
+
+  <!-- CARRINHO FLUTUANTE — oculto até ter itens -->
+  <div id="cartFloating" class="cart-floating" style="display:none;">
     <div id="cartDropdown" class="cart-dropdown">
       <div class="dropdown-header">
         <span data-i18n="cart_items_title">Seus itens</span>
         <button id="closeCartDropdown" class="close-dropdown">✕</button>
       </div>
-
       <div id="cartItemsPreview" class="cart-items-preview"></div>
-
       <div class="dropdown-footer">
         <span><span data-i18n="total_label">Total</span>: €<span id="dropdownTotal">0.00</span></span>
         <button data-i18n="view_order">Ver pedido</button>
       </div>
     </div>
-
     <div class="cart-icon">
       <i class="fa-solid fa-cart-shopping"></i>
       <span id="cartCountBadge" class="cart-badge">0</span>
