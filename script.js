@@ -593,6 +593,11 @@ document.addEventListener('DOMContentLoaded', function () {
       const w = cartFloating.offsetWidth, h = cartFloating.offsetHeight
       return { left: Math.min(Math.max(left, 0), window.innerWidth - w), top: Math.min(Math.max(top, 0), window.innerHeight - h) }
     }
+    //ATUALIZACAO//
+    function isInsideScrollableArea(target) {
+  return target.closest('.product-list, #cartDropdown, .preview-item, .dropdown-content')
+}
+//ATUALIZACAO//
     function initPos() {
       const r = cartFloating.getBoundingClientRect()
       const c = clamp(r.left, r.top)
@@ -619,8 +624,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function endDrag() { isDragging = false }
 
-    cartFloating.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: true })
-    cartFloating.addEventListener('touchmove', e => { e.preventDefault(); onDrag(e.touches[0].clientX, e.touches[0].clientY) }, { passive: false })
+    cartFloating.addEventListener('touchstart', e => {
+  if (isInsideScrollableArea(e.target)) return
+  startDrag(e.touches[0].clientX, e.touches[0].clientY)
+}, { passive: true })
+
+    cartFloating.addEventListener('touchmove', e => {
+  if (!isDragging) return
+  if (isInsideScrollableArea(e.target)) return
+
+  e.preventDefault()
+  onDrag(e.touches[0].clientX, e.touches[0].clientY)
+}, { passive: false })
+
     cartFloating.addEventListener('touchend', endDrag)
     cartFloating.addEventListener('touchcancel', endDrag)
     cartFloating.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY) })
