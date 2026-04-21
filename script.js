@@ -1,4 +1,4 @@
-/* script.js — versão completa com todas as atualizações */
+/* script.js — versão completa com validação de campos e política de privacidade */
 
 const WHATSAPP_NUMBER = '353832023836'
 
@@ -468,6 +468,70 @@ function initCountrySelector() {
   document.addEventListener('click', e => { if (!selector.contains(e.target)) closeCountryDropdown() })
 }
 
+// ========== VALIDAÇÃO DE CAMPOS (ADICIONADA) ==========
+function validateForm() {
+  const name = document.getElementById('name').value.trim()
+  const address = document.getElementById('address').value.trim()
+  const phoneRaw = document.getElementById('phone').value.trim()
+  const details = document.getElementById('details').value.trim()
+
+  // 1. Campos vazios
+  if (!name) {
+    alert('Por favor, preencha seu nome completo.\nPlease fill in your full name.\nPor favor, rellene su nombre completo.')
+    return false
+  }
+  if (!address) {
+    alert('Por favor, preencha seu endereço.\nPlease fill in your address.\nPor favor, rellene su dirección.')
+    return false
+  }
+  if (!phoneRaw) {
+    alert('Por favor, preencha seu telefone.\nPlease fill in your phone number.\nPor favor, rellene su número de teléfono.')
+    return false
+  }
+  if (!details) {
+    alert('Por favor, preencha os detalhes do pedido.\nPlease fill in order details.\nPor favor, rellene los detalles del pedido.')
+    return false
+  }
+  if (orderList.length === 0) {
+    alert('Adicione itens ao pedido antes de finalizar.\nAdd items to your order before finishing.\nAñade artículos al pedido antes de finalizar.')
+    return false
+  }
+
+  // 2. Validação de telefone (apenas dígitos, mínimo 7 dígitos após o código)
+  const digitsOnly = phoneRaw.replace(/\D/g, '')
+  if (digitsOnly.length < 7) {
+    alert('Telefone inválido. Digite pelo menos 7 dígitos (ex: 831234567).\nInvalid phone number. Enter at least 7 digits.\nNúmero de teléfono inválido. Ingrese al menos 7 dígitos.')
+    return false
+  }
+
+  return true
+}
+
+// ========== POLÍTICA DE PRIVACIDADE (MODAL) ==========
+function initPrivacyModal() {
+  const modal = document.getElementById('privacyModal')
+  const link = document.getElementById('privacyPolicyLink')
+  const closeBtn = document.getElementById('closePrivacyModal')
+
+  if (!modal || !link) return
+
+  function openModal() {
+    modal.style.display = 'flex'
+  }
+  function closeModal() {
+    modal.style.display = 'none'
+  }
+
+  link.addEventListener('click', (e) => {
+    e.preventDefault()
+    openModal()
+  })
+  closeBtn.addEventListener('click', closeModal)
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal()
+  })
+}
+
 // ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -528,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // ADICIONAR PRODUTO (cards normais) — captura imagem do article
+  // ADICIONAR PRODUTO (cards normais)
   document.querySelectorAll(".add-item").forEach(btn => {
     btn.addEventListener("click", function () {
       const product = this.closest(".product")
@@ -593,11 +657,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const w = cartFloating.offsetWidth, h = cartFloating.offsetHeight
       return { left: Math.min(Math.max(left, 0), window.innerWidth - w), top: Math.min(Math.max(top, 0), window.innerHeight - h) }
     }
-    //ATUALIZACAO//
     function isInsideScrollableArea(target) {
-  return target.closest('.product-list, #cartDropdown, .preview-item, .dropdown-content')
-}
-//ATUALIZACAO//
+      return target.closest('.product-list, #cartDropdown, .preview-item, .dropdown-content')
+    }
     function initPos() {
       const r = cartFloating.getBoundingClientRect()
       const c = clamp(r.left, r.top)
@@ -609,13 +671,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const c = clamp(parseFloat(cartFloating.style.left) || 0, parseFloat(cartFloating.style.top) || 0)
       cartFloating.style.left = c.left + 'px'; cartFloating.style.top = c.top + 'px'
     })
-    function isInsideScrollableArea(target) {
-  return target.closest('.cart-items-preview, .cart-dropdown, .preview-item')
-}
-
-function isDragHandle(target) {
-  return target.closest('#cartFloating')
-}
+    function isDragHandle(target) {
+      return target.closest('#cartFloating')
+    }
 
     function startDrag(cx, cy) {
       isDragging = true; hasMoved = false
@@ -632,19 +690,17 @@ function isDragHandle(target) {
     function endDrag() { isDragging = false }
 
     cartFloating.addEventListener('touchstart', e => {
-  if (isInsideScrollableArea(e.target)) return
-  if (!isDragHandle(e.target)) return
-
-  startDrag(e.touches[0].clientX, e.touches[0].clientY)
-}, { passive: true })
+      if (isInsideScrollableArea(e.target)) return
+      if (!isDragHandle(e.target)) return
+      startDrag(e.touches[0].clientX, e.touches[0].clientY)
+    }, { passive: true })
 
     cartFloating.addEventListener('touchmove', e => {
-  if (!isDragging) return
-  if (isInsideScrollableArea(e.target)) return
-
-  e.preventDefault()
-  onDrag(e.touches[0].clientX, e.touches[0].clientY)
-}, { passive: false })
+      if (!isDragging) return
+      if (isInsideScrollableArea(e.target)) return
+      e.preventDefault()
+      onDrag(e.touches[0].clientX, e.touches[0].clientY)
+    }, { passive: false })
 
     cartFloating.addEventListener('touchend', endDrag)
     cartFloating.addEventListener('touchcancel', endDrag)
@@ -730,19 +786,16 @@ function isDragHandle(target) {
     document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show')))
   }
 
-  // ENVIO WHATSAPP
+  // ENVIO WHATSAPP COM VALIDAÇÃO (MODIFICADO)
   document.getElementById('sendWhatsApp').addEventListener('click', function () {
+    // Validação completa
+    if (!validateForm()) return
+
     const name = document.getElementById('name').value.trim()
     const address = document.getElementById('address').value.trim()
     const phoneRaw = document.getElementById('phone').value.trim()
     const phone = selectedCountry.dial + ' ' + phoneRaw
     const details = document.getElementById('details').value.trim()
-
-    if (!name || !address || !phoneRaw || !details) {
-      alert('Please fill in all the fields.\nPor favor, preencha todos os campos.\nPor favor, rellene todos los campos.')
-      return
-    }
-    if (orderList.length === 0) { alert('Adicione itens ao pedido.'); return }
 
     let message = `*Pedido via Site*\n\n*Nome:* ${name}\n*Endereço:* ${address}\n*Telefone:* ${phone}\n*Detalhes:* ${details}\n\n*Itens:*\n`
     orderList.forEach(item => {
@@ -754,4 +807,7 @@ function isDragHandle(target) {
     message += `\n*Total: €${totalVal.toFixed(2)}*`
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank')
   })
+
+  // Inicializar modal de privacidade
+  initPrivacyModal()
 })
